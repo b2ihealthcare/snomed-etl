@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SNOMED CT Expression Template Language IDE Module
+Bundle-SymbolicName: com.b2international.snomed.etl.ide;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: B2i Healthcare
+Automatic-Module-Name: com.b2international.snomed.etl.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ com.b2international.snomed.etl;visibility:=reexport
+Export-Package: com.b2international.snomed.etl.ide,
+ com.b2international.snomed.etl.ide,
+ com.b2international.snomed.etl.ide.contentassist.antlr,
+ com.b2international.snomed.etl.ide.contentassist.antlr.internal,
+ com.b2international.snomed.etl.ide.contentassist.antlr.lexer
+Import-Package: org.apache.log4j;version="1.2.15"
+Bundle-ActivationPolicy: lazy
