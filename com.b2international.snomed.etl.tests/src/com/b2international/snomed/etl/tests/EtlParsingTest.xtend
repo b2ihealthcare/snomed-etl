@@ -18,7 +18,6 @@ package com.b2international.snomed.etl.tests
 import com.b2international.snomed.ecl.Ecl
 import com.b2international.snomed.ecl.ecl.Any
 import com.b2international.snomed.ecl.ecl.AttributeConstraint
-import com.b2international.snomed.ecl.ecl.AttributeValueEquals
 import com.b2international.snomed.ecl.ecl.DescendantOf
 import com.b2international.snomed.ecl.ecl.DescendantOrSelfOf
 import com.b2international.snomed.ecl.ecl.EclConceptReference
@@ -49,6 +48,7 @@ import static org.junit.Assert.assertFalse
 import static org.junit.Assert.assertNotNull
 import static org.junit.Assert.assertNull
 import static org.junit.Assert.assertTrue
+import com.b2international.snomed.ecl.ecl.AttributeComparison
 
 @RunWith(XtextRunner)
 @InjectWith(EtlInjectorProvider)
@@ -1200,8 +1200,8 @@ class EtlParsingTest {
 		
 		assertTrue(attributeConstraint.attribute instanceof EclConceptReference)
 		assertEclConceptReference(attributeConstraint.attribute as EclConceptReference, "363698007", "Finding site")
-		assertTrue(attributeConstraint.comparison instanceof AttributeValueEquals) 
-		assertTrue((attributeConstraint.comparison as AttributeValueEquals).constraint instanceof Any)
+		assertTrue(attributeConstraint.comparison instanceof AttributeComparison) 
+		assertTrue((attributeConstraint.comparison as AttributeComparison).value instanceof Any)
 		
 		assertEquals(1, expression.expression.refinement.attributes.size)
 		assertTrue(expression.expression.refinement.groups.empty)
