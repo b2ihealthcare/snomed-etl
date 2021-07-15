@@ -15,49 +15,60 @@
  */
 package com.b2international.snomed.etl.serializer;
 
+import com.b2international.snomed.ecl.ecl.AcceptabilityIdSet;
+import com.b2international.snomed.ecl.ecl.AcceptabilityTokenSet;
+import com.b2international.snomed.ecl.ecl.AcceptableInFilter;
+import com.b2international.snomed.ecl.ecl.ActiveFilter;
 import com.b2international.snomed.ecl.ecl.AncestorOf;
 import com.b2international.snomed.ecl.ecl.AncestorOrSelfOf;
 import com.b2international.snomed.ecl.ecl.AndExpressionConstraint;
 import com.b2international.snomed.ecl.ecl.AndRefinement;
 import com.b2international.snomed.ecl.ecl.Any;
+import com.b2international.snomed.ecl.ecl.AttributeComparison;
 import com.b2international.snomed.ecl.ecl.AttributeConstraint;
-import com.b2international.snomed.ecl.ecl.AttributeValueEquals;
-import com.b2international.snomed.ecl.ecl.AttributeValueNotEquals;
-import com.b2international.snomed.ecl.ecl.BooleanValueEquals;
-import com.b2international.snomed.ecl.ecl.BooleanValueNotEquals;
+import com.b2international.snomed.ecl.ecl.BooleanValueComparison;
 import com.b2international.snomed.ecl.ecl.Cardinality;
+import com.b2international.snomed.ecl.ecl.CaseSignificanceFilter;
 import com.b2international.snomed.ecl.ecl.ChildOf;
 import com.b2international.snomed.ecl.ecl.ChildOrSelfOf;
-import com.b2international.snomed.ecl.ecl.DecimalValueEquals;
-import com.b2international.snomed.ecl.ecl.DecimalValueGreaterThan;
-import com.b2international.snomed.ecl.ecl.DecimalValueGreaterThanEquals;
-import com.b2international.snomed.ecl.ecl.DecimalValueLessThan;
-import com.b2international.snomed.ecl.ecl.DecimalValueLessThanEquals;
-import com.b2international.snomed.ecl.ecl.DecimalValueNotEquals;
+import com.b2international.snomed.ecl.ecl.ConjunctionFilter;
+import com.b2international.snomed.ecl.ecl.DecimalValueComparison;
 import com.b2international.snomed.ecl.ecl.DescendantOf;
 import com.b2international.snomed.ecl.ecl.DescendantOrSelfOf;
+import com.b2international.snomed.ecl.ecl.Dialect;
+import com.b2international.snomed.ecl.ecl.DialectAlias;
+import com.b2international.snomed.ecl.ecl.DialectAliasFilter;
+import com.b2international.snomed.ecl.ecl.DialectIdFilter;
+import com.b2international.snomed.ecl.ecl.DisjunctionFilter;
 import com.b2international.snomed.ecl.ecl.DottedExpressionConstraint;
 import com.b2international.snomed.ecl.ecl.EclAttributeGroup;
 import com.b2international.snomed.ecl.ecl.EclConceptReference;
+import com.b2international.snomed.ecl.ecl.EclConceptReferenceSet;
 import com.b2international.snomed.ecl.ecl.EclPackage;
+import com.b2international.snomed.ecl.ecl.EffectiveTimeFilter;
 import com.b2international.snomed.ecl.ecl.ExclusionExpressionConstraint;
-import com.b2international.snomed.ecl.ecl.IntegerValueEquals;
-import com.b2international.snomed.ecl.ecl.IntegerValueGreaterThan;
-import com.b2international.snomed.ecl.ecl.IntegerValueGreaterThanEquals;
-import com.b2international.snomed.ecl.ecl.IntegerValueLessThan;
-import com.b2international.snomed.ecl.ecl.IntegerValueLessThanEquals;
-import com.b2international.snomed.ecl.ecl.IntegerValueNotEquals;
+import com.b2international.snomed.ecl.ecl.FilteredExpressionConstraint;
+import com.b2international.snomed.ecl.ecl.IntegerValueComparison;
+import com.b2international.snomed.ecl.ecl.LanguageFilter;
+import com.b2international.snomed.ecl.ecl.LanguageRefSetFilter;
 import com.b2international.snomed.ecl.ecl.MemberOf;
+import com.b2international.snomed.ecl.ecl.ModuleFilter;
 import com.b2international.snomed.ecl.ecl.NestedExpression;
+import com.b2international.snomed.ecl.ecl.NestedFilter;
 import com.b2international.snomed.ecl.ecl.NestedRefinement;
 import com.b2international.snomed.ecl.ecl.OrExpressionConstraint;
 import com.b2international.snomed.ecl.ecl.OrRefinement;
 import com.b2international.snomed.ecl.ecl.ParentOf;
 import com.b2international.snomed.ecl.ecl.ParentOrSelfOf;
+import com.b2international.snomed.ecl.ecl.PreferredInFilter;
 import com.b2international.snomed.ecl.ecl.RefinedExpressionConstraint;
 import com.b2international.snomed.ecl.ecl.Script;
-import com.b2international.snomed.ecl.ecl.StringValueEquals;
-import com.b2international.snomed.ecl.ecl.StringValueNotEquals;
+import com.b2international.snomed.ecl.ecl.SemanticTagFilter;
+import com.b2international.snomed.ecl.ecl.StringValueComparison;
+import com.b2international.snomed.ecl.ecl.TypeIdFilter;
+import com.b2international.snomed.ecl.ecl.TypeTokenFilter;
+import com.b2international.snomed.ecl.ecl.TypedTermFilter;
+import com.b2international.snomed.ecl.ecl.TypedTermFilterSet;
 import com.b2international.snomed.ecl.serializer.EclSemanticSequencer;
 import com.b2international.snomed.etl.etl.Attribute;
 import com.b2international.snomed.etl.etl.AttributeGroup;
@@ -112,6 +123,18 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == EclPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case EclPackage.ACCEPTABILITY_ID_SET:
+				sequence_AcceptabilityIdSet(context, (AcceptabilityIdSet) semanticObject); 
+				return; 
+			case EclPackage.ACCEPTABILITY_TOKEN_SET:
+				sequence_AcceptabilityTokenSet(context, (AcceptabilityTokenSet) semanticObject); 
+				return; 
+			case EclPackage.ACCEPTABLE_IN_FILTER:
+				sequence_AcceptableInFilter(context, (AcceptableInFilter) semanticObject); 
+				return; 
+			case EclPackage.ACTIVE_FILTER:
+				sequence_ActiveFilter(context, (ActiveFilter) semanticObject); 
+				return; 
 			case EclPackage.ANCESTOR_OF:
 				sequence_AncestorOf(context, (AncestorOf) semanticObject); 
 				return; 
@@ -142,23 +165,20 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 			case EclPackage.ANY:
 				sequence_Any(context, (Any) semanticObject); 
 				return; 
+			case EclPackage.ATTRIBUTE_COMPARISON:
+				sequence_AttributeComparison(context, (AttributeComparison) semanticObject); 
+				return; 
 			case EclPackage.ATTRIBUTE_CONSTRAINT:
 				sequence_AttributeConstraint(context, (AttributeConstraint) semanticObject); 
 				return; 
-			case EclPackage.ATTRIBUTE_VALUE_EQUALS:
-				sequence_AttributeValueEquals(context, (AttributeValueEquals) semanticObject); 
-				return; 
-			case EclPackage.ATTRIBUTE_VALUE_NOT_EQUALS:
-				sequence_AttributeValueNotEquals(context, (AttributeValueNotEquals) semanticObject); 
-				return; 
-			case EclPackage.BOOLEAN_VALUE_EQUALS:
-				sequence_BooleanValueEquals(context, (BooleanValueEquals) semanticObject); 
-				return; 
-			case EclPackage.BOOLEAN_VALUE_NOT_EQUALS:
-				sequence_BooleanValueNotEquals(context, (BooleanValueNotEquals) semanticObject); 
+			case EclPackage.BOOLEAN_VALUE_COMPARISON:
+				sequence_BooleanValueComparison(context, (BooleanValueComparison) semanticObject); 
 				return; 
 			case EclPackage.CARDINALITY:
 				sequence_Cardinality(context, (Cardinality) semanticObject); 
+				return; 
+			case EclPackage.CASE_SIGNIFICANCE_FILTER:
+				sequence_CaseSignificanceFilter(context, (CaseSignificanceFilter) semanticObject); 
 				return; 
 			case EclPackage.CHILD_OF:
 				sequence_ChildOf(context, (ChildOf) semanticObject); 
@@ -166,29 +186,32 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 			case EclPackage.CHILD_OR_SELF_OF:
 				sequence_ChildOrSelfOf(context, (ChildOrSelfOf) semanticObject); 
 				return; 
-			case EclPackage.DECIMAL_VALUE_EQUALS:
-				sequence_DecimalValueEquals(context, (DecimalValueEquals) semanticObject); 
+			case EclPackage.CONJUNCTION_FILTER:
+				sequence_ConjunctionFilter(context, (ConjunctionFilter) semanticObject); 
 				return; 
-			case EclPackage.DECIMAL_VALUE_GREATER_THAN:
-				sequence_DecimalValueGreaterThan(context, (DecimalValueGreaterThan) semanticObject); 
-				return; 
-			case EclPackage.DECIMAL_VALUE_GREATER_THAN_EQUALS:
-				sequence_DecimalValueGreaterThanEquals(context, (DecimalValueGreaterThanEquals) semanticObject); 
-				return; 
-			case EclPackage.DECIMAL_VALUE_LESS_THAN:
-				sequence_DecimalValueLessThan(context, (DecimalValueLessThan) semanticObject); 
-				return; 
-			case EclPackage.DECIMAL_VALUE_LESS_THAN_EQUALS:
-				sequence_DecimalValueLessThanEquals(context, (DecimalValueLessThanEquals) semanticObject); 
-				return; 
-			case EclPackage.DECIMAL_VALUE_NOT_EQUALS:
-				sequence_DecimalValueNotEquals(context, (DecimalValueNotEquals) semanticObject); 
+			case EclPackage.DECIMAL_VALUE_COMPARISON:
+				sequence_DecimalValueComparison(context, (DecimalValueComparison) semanticObject); 
 				return; 
 			case EclPackage.DESCENDANT_OF:
 				sequence_DescendantOf(context, (DescendantOf) semanticObject); 
 				return; 
 			case EclPackage.DESCENDANT_OR_SELF_OF:
 				sequence_DescendantOrSelfOf(context, (DescendantOrSelfOf) semanticObject); 
+				return; 
+			case EclPackage.DIALECT:
+				sequence_Dialect(context, (Dialect) semanticObject); 
+				return; 
+			case EclPackage.DIALECT_ALIAS:
+				sequence_DialectAlias(context, (DialectAlias) semanticObject); 
+				return; 
+			case EclPackage.DIALECT_ALIAS_FILTER:
+				sequence_DialectAliasFilter(context, (DialectAliasFilter) semanticObject); 
+				return; 
+			case EclPackage.DIALECT_ID_FILTER:
+				sequence_DialectIdFilter(context, (DialectIdFilter) semanticObject); 
+				return; 
+			case EclPackage.DISJUNCTION_FILTER:
+				sequence_DisjunctionFilter(context, (DisjunctionFilter) semanticObject); 
 				return; 
 			case EclPackage.DOTTED_EXPRESSION_CONSTRAINT:
 				sequence_DottedExpressionConstraint(context, (DottedExpressionConstraint) semanticObject); 
@@ -199,32 +222,38 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 			case EclPackage.ECL_CONCEPT_REFERENCE:
 				sequence_EclConceptReference(context, (EclConceptReference) semanticObject); 
 				return; 
+			case EclPackage.ECL_CONCEPT_REFERENCE_SET:
+				sequence_EclConceptReferenceSet(context, (EclConceptReferenceSet) semanticObject); 
+				return; 
+			case EclPackage.EFFECTIVE_TIME_FILTER:
+				sequence_EffectiveTimeFilter(context, (EffectiveTimeFilter) semanticObject); 
+				return; 
 			case EclPackage.EXCLUSION_EXPRESSION_CONSTRAINT:
 				sequence_ExclusionExpressionConstraint(context, (ExclusionExpressionConstraint) semanticObject); 
 				return; 
-			case EclPackage.INTEGER_VALUE_EQUALS:
-				sequence_IntegerValueEquals(context, (IntegerValueEquals) semanticObject); 
+			case EclPackage.FILTERED_EXPRESSION_CONSTRAINT:
+				sequence_FilteredExpressionConstraint(context, (FilteredExpressionConstraint) semanticObject); 
 				return; 
-			case EclPackage.INTEGER_VALUE_GREATER_THAN:
-				sequence_IntegerValueGreaterThan(context, (IntegerValueGreaterThan) semanticObject); 
+			case EclPackage.INTEGER_VALUE_COMPARISON:
+				sequence_IntegerValueComparison(context, (IntegerValueComparison) semanticObject); 
 				return; 
-			case EclPackage.INTEGER_VALUE_GREATER_THAN_EQUALS:
-				sequence_IntegerValueGreaterThanEquals(context, (IntegerValueGreaterThanEquals) semanticObject); 
+			case EclPackage.LANGUAGE_FILTER:
+				sequence_LanguageFilter(context, (LanguageFilter) semanticObject); 
 				return; 
-			case EclPackage.INTEGER_VALUE_LESS_THAN:
-				sequence_IntegerValueLessThan(context, (IntegerValueLessThan) semanticObject); 
-				return; 
-			case EclPackage.INTEGER_VALUE_LESS_THAN_EQUALS:
-				sequence_IntegerValueLessThanEquals(context, (IntegerValueLessThanEquals) semanticObject); 
-				return; 
-			case EclPackage.INTEGER_VALUE_NOT_EQUALS:
-				sequence_IntegerValueNotEquals(context, (IntegerValueNotEquals) semanticObject); 
+			case EclPackage.LANGUAGE_REF_SET_FILTER:
+				sequence_LanguageRefSetFilter(context, (LanguageRefSetFilter) semanticObject); 
 				return; 
 			case EclPackage.MEMBER_OF:
 				sequence_MemberOf(context, (MemberOf) semanticObject); 
 				return; 
+			case EclPackage.MODULE_FILTER:
+				sequence_ModuleFilter(context, (ModuleFilter) semanticObject); 
+				return; 
 			case EclPackage.NESTED_EXPRESSION:
 				sequence_NestedExpression(context, (NestedExpression) semanticObject); 
+				return; 
+			case EclPackage.NESTED_FILTER:
+				sequence_NestedFilter(context, (NestedFilter) semanticObject); 
 				return; 
 			case EclPackage.NESTED_REFINEMENT:
 				if (rule == grammarAccess.getEclAttributeSetRule()
@@ -271,17 +300,32 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 			case EclPackage.PARENT_OR_SELF_OF:
 				sequence_ParentOrSelfOf(context, (ParentOrSelfOf) semanticObject); 
 				return; 
+			case EclPackage.PREFERRED_IN_FILTER:
+				sequence_PreferredInFilter(context, (PreferredInFilter) semanticObject); 
+				return; 
 			case EclPackage.REFINED_EXPRESSION_CONSTRAINT:
 				sequence_RefinedExpressionConstraint(context, (RefinedExpressionConstraint) semanticObject); 
 				return; 
 			case EclPackage.SCRIPT:
 				sequence_Script(context, (Script) semanticObject); 
 				return; 
-			case EclPackage.STRING_VALUE_EQUALS:
-				sequence_StringValueEquals(context, (StringValueEquals) semanticObject); 
+			case EclPackage.SEMANTIC_TAG_FILTER:
+				sequence_SemanticTagFilter(context, (SemanticTagFilter) semanticObject); 
 				return; 
-			case EclPackage.STRING_VALUE_NOT_EQUALS:
-				sequence_StringValueNotEquals(context, (StringValueNotEquals) semanticObject); 
+			case EclPackage.STRING_VALUE_COMPARISON:
+				sequence_StringValueComparison(context, (StringValueComparison) semanticObject); 
+				return; 
+			case EclPackage.TYPE_ID_FILTER:
+				sequence_TypeIdFilter(context, (TypeIdFilter) semanticObject); 
+				return; 
+			case EclPackage.TYPE_TOKEN_FILTER:
+				sequence_TypeTokenFilter(context, (TypeTokenFilter) semanticObject); 
+				return; 
+			case EclPackage.TYPED_TERM_FILTER:
+				sequence_TypedTermFilter(context, (TypedTermFilter) semanticObject); 
+				return; 
+			case EclPackage.TYPED_TERM_FILTER_SET:
+				sequence_TypedTermFilterSet(context, (TypedTermFilterSet) semanticObject); 
 				return; 
 			}
 		else if (epackage == EtlPackage.eINSTANCE)
@@ -412,7 +456,7 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	 *     ConceptReference returns ConceptReference
 	 *
 	 * Constraint:
-	 *     (slot=ConceptReplacementSlot | (id=SnomedIdentifier term=TERM_STRING?))
+	 *     (slot=ConceptReplacementSlot | (id=SnomedIdentifier term=PIPE_DELIMITED_STRING?))
 	 */
 	protected void sequence_ConceptReference(ISerializationContext context, ConceptReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

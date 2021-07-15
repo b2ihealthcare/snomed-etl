@@ -899,13 +899,13 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		private final Assignment cIdAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final RuleCall cIdSnomedIdentifierParserRuleCall_1_0_0 = (RuleCall)cIdAssignment_1_0.eContents().get(0);
 		private final Assignment cTermAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cTermTERM_STRINGTerminalRuleCall_1_1_0 = (RuleCall)cTermAssignment_1_1.eContents().get(0);
+		private final RuleCall cTermPIPE_DELIMITED_STRINGTerminalRuleCall_1_1_0 = (RuleCall)cTermAssignment_1_1.eContents().get(0);
 		
 		//ConceptReference:
-		//	slot=ConceptReplacementSlot | id=SnomedIdentifier term=TERM_STRING?;
+		//	slot=ConceptReplacementSlot | id=SnomedIdentifier term=PIPE_DELIMITED_STRING?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//slot=ConceptReplacementSlot | id=SnomedIdentifier term=TERM_STRING?
+		//slot=ConceptReplacementSlot | id=SnomedIdentifier term=PIPE_DELIMITED_STRING?
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//slot=ConceptReplacementSlot
@@ -914,7 +914,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		//ConceptReplacementSlot
 		public RuleCall getSlotConceptReplacementSlotParserRuleCall_0_0() { return cSlotConceptReplacementSlotParserRuleCall_0_0; }
 		
-		//id=SnomedIdentifier term=TERM_STRING?
+		//id=SnomedIdentifier term=PIPE_DELIMITED_STRING?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//id=SnomedIdentifier
@@ -923,11 +923,11 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		//SnomedIdentifier
 		public RuleCall getIdSnomedIdentifierParserRuleCall_1_0_0() { return cIdSnomedIdentifierParserRuleCall_1_0_0; }
 		
-		//term=TERM_STRING?
+		//term=PIPE_DELIMITED_STRING?
 		public Assignment getTermAssignment_1_1() { return cTermAssignment_1_1; }
 		
-		//TERM_STRING
-		public RuleCall getTermTERM_STRINGTerminalRuleCall_1_1_0() { return cTermTERM_STRINGTerminalRuleCall_1_1_0; }
+		//PIPE_DELIMITED_STRING
+		public RuleCall getTermPIPE_DELIMITED_STRINGTerminalRuleCall_1_1_0() { return cTermPIPE_DELIMITED_STRINGTerminalRuleCall_1_1_0; }
 	}
 	public class SlotTokenElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.b2international.snomed.etl.Etl.SlotToken");
@@ -935,9 +935,9 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		private final RuleCall cEQUIVALENT_TOTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cSUBTYPE_OFTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cCOMMATerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cCONJUNCTIONTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cDISJUNCTIONTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cEXCLUSIONTerminalRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cCONJUNCTION_KEYWORDTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cDISJUNCTION_KEYWORDTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cEXCLUSION_KEYWORDTerminalRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cREVERSEDTerminalRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cCARETTerminalRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cLTTerminalRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
@@ -952,12 +952,12 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		private final RuleCall cNOT_EQUALTerminalRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
 		
 		//SlotToken:
-		//	EQUIVALENT_TO | SUBTYPE_OF | COMMA | CONJUNCTION | DISJUNCTION | EXCLUSION | REVERSED | CARET | LT | LTE | DBL_LT |
-		//	LT_EM | GT | GTE | DBL_GT | GT_EM | EQUAL | NOT_EQUAL;
+		//	EQUIVALENT_TO | SUBTYPE_OF | COMMA | CONJUNCTION_KEYWORD | DISJUNCTION_KEYWORD | EXCLUSION_KEYWORD | REVERSED | CARET
+		//	| LT | LTE | DBL_LT | LT_EM | GT | GTE | DBL_GT | GT_EM | EQUAL | NOT_EQUAL;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//EQUIVALENT_TO | SUBTYPE_OF | COMMA | CONJUNCTION | DISJUNCTION | EXCLUSION | REVERSED | CARET | LT | LTE | DBL_LT |
-		//LT_EM | GT | GTE | DBL_GT | GT_EM | EQUAL | NOT_EQUAL
+		//EQUIVALENT_TO | SUBTYPE_OF | COMMA | CONJUNCTION_KEYWORD | DISJUNCTION_KEYWORD | EXCLUSION_KEYWORD | REVERSED | CARET |
+		//LT | LTE | DBL_LT | LT_EM | GT | GTE | DBL_GT | GT_EM | EQUAL | NOT_EQUAL
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//EQUIVALENT_TO
@@ -969,14 +969,14 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		//COMMA
 		public RuleCall getCOMMATerminalRuleCall_2() { return cCOMMATerminalRuleCall_2; }
 		
-		//CONJUNCTION
-		public RuleCall getCONJUNCTIONTerminalRuleCall_3() { return cCONJUNCTIONTerminalRuleCall_3; }
+		//CONJUNCTION_KEYWORD
+		public RuleCall getCONJUNCTION_KEYWORDTerminalRuleCall_3() { return cCONJUNCTION_KEYWORDTerminalRuleCall_3; }
 		
-		//DISJUNCTION
-		public RuleCall getDISJUNCTIONTerminalRuleCall_4() { return cDISJUNCTIONTerminalRuleCall_4; }
+		//DISJUNCTION_KEYWORD
+		public RuleCall getDISJUNCTION_KEYWORDTerminalRuleCall_4() { return cDISJUNCTION_KEYWORDTerminalRuleCall_4; }
 		
-		//EXCLUSION
-		public RuleCall getEXCLUSIONTerminalRuleCall_5() { return cEXCLUSIONTerminalRuleCall_5; }
+		//EXCLUSION_KEYWORD
+		public RuleCall getEXCLUSION_KEYWORDTerminalRuleCall_5() { return cEXCLUSION_KEYWORDTerminalRuleCall_5; }
 		
 		//REVERSED
 		public RuleCall getREVERSEDTerminalRuleCall_6() { return cREVERSEDTerminalRuleCall_6; }
@@ -1703,7 +1703,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//ConceptReference:
-	//	slot=ConceptReplacementSlot | id=SnomedIdentifier term=TERM_STRING?;
+	//	slot=ConceptReplacementSlot | id=SnomedIdentifier term=PIPE_DELIMITED_STRING?;
 	public ConceptReferenceElements getConceptReferenceAccess() {
 		return pConceptReference;
 	}
@@ -1713,8 +1713,8 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//SlotToken:
-	//	EQUIVALENT_TO | SUBTYPE_OF | COMMA | CONJUNCTION | DISJUNCTION | EXCLUSION | REVERSED | CARET | LT | LTE | DBL_LT |
-	//	LT_EM | GT | GTE | DBL_GT | GT_EM | EQUAL | NOT_EQUAL;
+	//	EQUIVALENT_TO | SUBTYPE_OF | COMMA | CONJUNCTION_KEYWORD | DISJUNCTION_KEYWORD | EXCLUSION_KEYWORD | REVERSED | CARET
+	//	| LT | LTE | DBL_LT | LT_EM | GT | GTE | DBL_GT | GT_EM | EQUAL | NOT_EQUAL;
 	public SlotTokenElements getSlotTokenAccess() {
 		return pSlotToken;
 	}
@@ -1952,7 +1952,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//OrExpressionConstraint ExpressionConstraint:
-	//	AndExpressionConstraint ({OrExpressionConstraint.left=current} DISJUNCTION right=AndExpressionConstraint)*;
+	//	AndExpressionConstraint ({OrExpressionConstraint.left=current} DISJUNCTION_KEYWORD right=AndExpressionConstraint)*;
 	public EclGrammarAccess.OrExpressionConstraintElements getOrExpressionConstraintAccess() {
 		return gaEcl.getOrExpressionConstraintAccess();
 	}
@@ -1962,7 +1962,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//AndExpressionConstraint ExpressionConstraint:
-	//	ExclusionExpressionConstraint ({AndExpressionConstraint.left=current} (CONJUNCTION | COMMA)
+	//	ExclusionExpressionConstraint ({AndExpressionConstraint.left=current} (CONJUNCTION_KEYWORD | COMMA)
 	//	right=ExclusionExpressionConstraint)*;
 	public EclGrammarAccess.AndExpressionConstraintElements getAndExpressionConstraintAccess() {
 		return gaEcl.getAndExpressionConstraintAccess();
@@ -1973,7 +1973,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//ExclusionExpressionConstraint ExpressionConstraint:
-	//	RefinedExpressionConstraint ({ExclusionExpressionConstraint.left=current} EXCLUSION
+	//	RefinedExpressionConstraint ({ExclusionExpressionConstraint.left=current} EXCLUSION_KEYWORD
 	//	right=RefinedExpressionConstraint)?;
 	public EclGrammarAccess.ExclusionExpressionConstraintElements getExclusionExpressionConstraintAccess() {
 		return gaEcl.getExclusionExpressionConstraintAccess();
@@ -1994,13 +1994,24 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//DottedExpressionConstraint ExpressionConstraint:
-	//	SubExpressionConstraint ({DottedExpressionConstraint.constraint=current} DOT attribute=SubExpressionConstraint)*;
+	//	FilteredExpressionConstraint ({DottedExpressionConstraint.constraint=current} DOT
+	//	attribute=FilteredExpressionConstraint)*;
 	public EclGrammarAccess.DottedExpressionConstraintElements getDottedExpressionConstraintAccess() {
 		return gaEcl.getDottedExpressionConstraintAccess();
 	}
 	
 	public ParserRule getDottedExpressionConstraintRule() {
 		return getDottedExpressionConstraintAccess().getRule();
+	}
+	
+	//FilteredExpressionConstraint ExpressionConstraint:
+	//	SubExpressionConstraint ({FilteredExpressionConstraint.constraint=current} filter=FilterConstraint)*;
+	public EclGrammarAccess.FilteredExpressionConstraintElements getFilteredExpressionConstraintAccess() {
+		return gaEcl.getFilteredExpressionConstraintAccess();
+	}
+	
+	public ParserRule getFilteredExpressionConstraintRule() {
+		return getFilteredExpressionConstraintAccess().getRule();
 	}
 	
 	//SubExpressionConstraint ExpressionConstraint:
@@ -2115,13 +2126,23 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//EclConceptReference:
-	//	id=SnomedIdentifier term=TERM_STRING?;
+	//	id=SnomedIdentifier term=PIPE_DELIMITED_STRING?;
 	public EclGrammarAccess.EclConceptReferenceElements getEclConceptReferenceAccess() {
 		return gaEcl.getEclConceptReferenceAccess();
 	}
 	
 	public ParserRule getEclConceptReferenceRule() {
 		return getEclConceptReferenceAccess().getRule();
+	}
+	
+	//EclConceptReferenceSet:
+	//	ROUND_OPEN concepts+=EclConceptReference+ ROUND_CLOSE;
+	public EclGrammarAccess.EclConceptReferenceSetElements getEclConceptReferenceSetAccess() {
+		return gaEcl.getEclConceptReferenceSetAccess();
+	}
+	
+	public ParserRule getEclConceptReferenceSetRule() {
+		return getEclConceptReferenceSetAccess().getRule();
 	}
 	
 	//Any:
@@ -2145,7 +2166,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//OrRefinement EclRefinement:
-	//	AndRefinement -> ({OrRefinement.left=current} DISJUNCTION right=AndRefinement)*;
+	//	AndRefinement -> ({OrRefinement.left=current} DISJUNCTION_KEYWORD right=AndRefinement)*;
 	public EclGrammarAccess.OrRefinementElements getOrRefinementAccess() {
 		return gaEcl.getOrRefinementAccess();
 	}
@@ -2155,7 +2176,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//AndRefinement EclRefinement:
-	//	SubRefinement -> ({AndRefinement.left=current} (CONJUNCTION | COMMA) right=SubRefinement)*;
+	//	SubRefinement -> ({AndRefinement.left=current} (CONJUNCTION_KEYWORD | COMMA) right=SubRefinement)*;
 	public EclGrammarAccess.AndRefinementElements getAndRefinementAccess() {
 		return gaEcl.getAndRefinementAccess();
 	}
@@ -2205,7 +2226,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//OrAttributeSet EclRefinement:
-	//	AndAttributeSet ({OrRefinement.left=current} DISJUNCTION right=AndAttributeSet)*;
+	//	AndAttributeSet ({OrRefinement.left=current} DISJUNCTION_KEYWORD right=AndAttributeSet)*;
 	public EclGrammarAccess.OrAttributeSetElements getOrAttributeSetAccess() {
 		return gaEcl.getOrAttributeSetAccess();
 	}
@@ -2215,7 +2236,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//AndAttributeSet EclRefinement:
-	//	SubAttributeSet ({AndRefinement.left=current} (CONJUNCTION | COMMA) right=SubAttributeSet)*;
+	//	SubAttributeSet ({AndRefinement.left=current} (CONJUNCTION_KEYWORD | COMMA) right=SubAttributeSet)*;
 	public EclGrammarAccess.AndAttributeSetElements getAndAttributeSetAccess() {
 		return gaEcl.getAndAttributeSetAccess();
 	}
@@ -2245,7 +2266,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//AttributeConstraint:
-	//	cardinality=Cardinality? reversed?=REVERSED? attribute=SubExpressionConstraint comparison=Comparison;
+	//	cardinality=Cardinality? reversed?=REVERSED? attribute=FilteredExpressionConstraint comparison=Comparison?;
 	public EclGrammarAccess.AttributeConstraintElements getAttributeConstraintAccess() {
 		return gaEcl.getAttributeConstraintAccess();
 	}
@@ -2275,7 +2296,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//AttributeComparison:
-	//	AttributeValueEquals | AttributeValueNotEquals;
+	//	op=NON_NUMERIC_OPERATOR value=FilteredExpressionConstraint;
 	public EclGrammarAccess.AttributeComparisonElements getAttributeComparisonAccess() {
 		return gaEcl.getAttributeComparisonAccess();
 	}
@@ -2285,22 +2306,10 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//DataTypeComparison:
-	//	BooleanValueEquals
-	//	| BooleanValueNotEquals
-	//	| StringValueEquals
-	//	| StringValueNotEquals
-	//	| IntegerValueEquals
-	//	| IntegerValueNotEquals
-	//	| IntegerValueGreaterThan
-	//	| IntegerValueGreaterThanEquals
-	//	| IntegerValueLessThan
-	//	| IntegerValueLessThanEquals
-	//	| DecimalValueEquals
-	//	| DecimalValueNotEquals
-	//	| DecimalValueGreaterThan
-	//	| DecimalValueGreaterThanEquals
-	//	| DecimalValueLessThan
-	//	| DecimalValueLessThanEquals;
+	//	BooleanValueComparison
+	//	| StringValueComparison
+	//	| IntegerValueComparison
+	//	| DecimalValueComparison;
 	public EclGrammarAccess.DataTypeComparisonElements getDataTypeComparisonAccess() {
 		return gaEcl.getDataTypeComparisonAccess();
 	}
@@ -2309,184 +2318,44 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getDataTypeComparisonAccess().getRule();
 	}
 	
-	//AttributeValueEquals:
-	//	EQUAL constraint=SubExpressionConstraint;
-	public EclGrammarAccess.AttributeValueEqualsElements getAttributeValueEqualsAccess() {
-		return gaEcl.getAttributeValueEqualsAccess();
+	//BooleanValueComparison:
+	//	op=NON_NUMERIC_OPERATOR value=Boolean;
+	public EclGrammarAccess.BooleanValueComparisonElements getBooleanValueComparisonAccess() {
+		return gaEcl.getBooleanValueComparisonAccess();
 	}
 	
-	public ParserRule getAttributeValueEqualsRule() {
-		return getAttributeValueEqualsAccess().getRule();
+	public ParserRule getBooleanValueComparisonRule() {
+		return getBooleanValueComparisonAccess().getRule();
 	}
 	
-	//AttributeValueNotEquals:
-	//	NOT_EQUAL constraint=SubExpressionConstraint;
-	public EclGrammarAccess.AttributeValueNotEqualsElements getAttributeValueNotEqualsAccess() {
-		return gaEcl.getAttributeValueNotEqualsAccess();
+	//StringValueComparison:
+	//	op=NON_NUMERIC_OPERATOR value=STRING;
+	public EclGrammarAccess.StringValueComparisonElements getStringValueComparisonAccess() {
+		return gaEcl.getStringValueComparisonAccess();
 	}
 	
-	public ParserRule getAttributeValueNotEqualsRule() {
-		return getAttributeValueNotEqualsAccess().getRule();
+	public ParserRule getStringValueComparisonRule() {
+		return getStringValueComparisonAccess().getRule();
 	}
 	
-	//BooleanValueEquals:
-	//	EQUAL value=Boolean;
-	public EclGrammarAccess.BooleanValueEqualsElements getBooleanValueEqualsAccess() {
-		return gaEcl.getBooleanValueEqualsAccess();
+	//IntegerValueComparison:
+	//	op=NUMERIC_OPERATOR HASH value=Integer;
+	public EclGrammarAccess.IntegerValueComparisonElements getIntegerValueComparisonAccess() {
+		return gaEcl.getIntegerValueComparisonAccess();
 	}
 	
-	public ParserRule getBooleanValueEqualsRule() {
-		return getBooleanValueEqualsAccess().getRule();
+	public ParserRule getIntegerValueComparisonRule() {
+		return getIntegerValueComparisonAccess().getRule();
 	}
 	
-	//BooleanValueNotEquals:
-	//	NOT_EQUAL value=Boolean;
-	public EclGrammarAccess.BooleanValueNotEqualsElements getBooleanValueNotEqualsAccess() {
-		return gaEcl.getBooleanValueNotEqualsAccess();
+	//DecimalValueComparison:
+	//	op=NUMERIC_OPERATOR HASH value=Decimal;
+	public EclGrammarAccess.DecimalValueComparisonElements getDecimalValueComparisonAccess() {
+		return gaEcl.getDecimalValueComparisonAccess();
 	}
 	
-	public ParserRule getBooleanValueNotEqualsRule() {
-		return getBooleanValueNotEqualsAccess().getRule();
-	}
-	
-	//StringValueEquals:
-	//	EQUAL value=STRING;
-	public EclGrammarAccess.StringValueEqualsElements getStringValueEqualsAccess() {
-		return gaEcl.getStringValueEqualsAccess();
-	}
-	
-	public ParserRule getStringValueEqualsRule() {
-		return getStringValueEqualsAccess().getRule();
-	}
-	
-	//StringValueNotEquals:
-	//	NOT_EQUAL value=STRING;
-	public EclGrammarAccess.StringValueNotEqualsElements getStringValueNotEqualsAccess() {
-		return gaEcl.getStringValueNotEqualsAccess();
-	}
-	
-	public ParserRule getStringValueNotEqualsRule() {
-		return getStringValueNotEqualsAccess().getRule();
-	}
-	
-	//IntegerValueEquals:
-	//	EQUAL HASH value=Integer;
-	public EclGrammarAccess.IntegerValueEqualsElements getIntegerValueEqualsAccess() {
-		return gaEcl.getIntegerValueEqualsAccess();
-	}
-	
-	public ParserRule getIntegerValueEqualsRule() {
-		return getIntegerValueEqualsAccess().getRule();
-	}
-	
-	//IntegerValueNotEquals:
-	//	NOT_EQUAL HASH value=Integer;
-	public EclGrammarAccess.IntegerValueNotEqualsElements getIntegerValueNotEqualsAccess() {
-		return gaEcl.getIntegerValueNotEqualsAccess();
-	}
-	
-	public ParserRule getIntegerValueNotEqualsRule() {
-		return getIntegerValueNotEqualsAccess().getRule();
-	}
-	
-	//IntegerValueGreaterThan:
-	//	GT HASH value=Integer;
-	public EclGrammarAccess.IntegerValueGreaterThanElements getIntegerValueGreaterThanAccess() {
-		return gaEcl.getIntegerValueGreaterThanAccess();
-	}
-	
-	public ParserRule getIntegerValueGreaterThanRule() {
-		return getIntegerValueGreaterThanAccess().getRule();
-	}
-	
-	//IntegerValueLessThan:
-	//	LT HASH value=Integer;
-	public EclGrammarAccess.IntegerValueLessThanElements getIntegerValueLessThanAccess() {
-		return gaEcl.getIntegerValueLessThanAccess();
-	}
-	
-	public ParserRule getIntegerValueLessThanRule() {
-		return getIntegerValueLessThanAccess().getRule();
-	}
-	
-	//IntegerValueGreaterThanEquals:
-	//	GTE HASH value=Integer;
-	public EclGrammarAccess.IntegerValueGreaterThanEqualsElements getIntegerValueGreaterThanEqualsAccess() {
-		return gaEcl.getIntegerValueGreaterThanEqualsAccess();
-	}
-	
-	public ParserRule getIntegerValueGreaterThanEqualsRule() {
-		return getIntegerValueGreaterThanEqualsAccess().getRule();
-	}
-	
-	//IntegerValueLessThanEquals:
-	//	LTE HASH value=Integer;
-	public EclGrammarAccess.IntegerValueLessThanEqualsElements getIntegerValueLessThanEqualsAccess() {
-		return gaEcl.getIntegerValueLessThanEqualsAccess();
-	}
-	
-	public ParserRule getIntegerValueLessThanEqualsRule() {
-		return getIntegerValueLessThanEqualsAccess().getRule();
-	}
-	
-	//DecimalValueEquals:
-	//	EQUAL HASH value=Decimal;
-	public EclGrammarAccess.DecimalValueEqualsElements getDecimalValueEqualsAccess() {
-		return gaEcl.getDecimalValueEqualsAccess();
-	}
-	
-	public ParserRule getDecimalValueEqualsRule() {
-		return getDecimalValueEqualsAccess().getRule();
-	}
-	
-	//DecimalValueNotEquals:
-	//	NOT_EQUAL HASH value=Decimal;
-	public EclGrammarAccess.DecimalValueNotEqualsElements getDecimalValueNotEqualsAccess() {
-		return gaEcl.getDecimalValueNotEqualsAccess();
-	}
-	
-	public ParserRule getDecimalValueNotEqualsRule() {
-		return getDecimalValueNotEqualsAccess().getRule();
-	}
-	
-	//DecimalValueGreaterThan:
-	//	GT HASH value=Decimal;
-	public EclGrammarAccess.DecimalValueGreaterThanElements getDecimalValueGreaterThanAccess() {
-		return gaEcl.getDecimalValueGreaterThanAccess();
-	}
-	
-	public ParserRule getDecimalValueGreaterThanRule() {
-		return getDecimalValueGreaterThanAccess().getRule();
-	}
-	
-	//DecimalValueLessThan:
-	//	LT HASH value=Decimal;
-	public EclGrammarAccess.DecimalValueLessThanElements getDecimalValueLessThanAccess() {
-		return gaEcl.getDecimalValueLessThanAccess();
-	}
-	
-	public ParserRule getDecimalValueLessThanRule() {
-		return getDecimalValueLessThanAccess().getRule();
-	}
-	
-	//DecimalValueGreaterThanEquals:
-	//	GTE HASH value=Decimal;
-	public EclGrammarAccess.DecimalValueGreaterThanEqualsElements getDecimalValueGreaterThanEqualsAccess() {
-		return gaEcl.getDecimalValueGreaterThanEqualsAccess();
-	}
-	
-	public ParserRule getDecimalValueGreaterThanEqualsRule() {
-		return getDecimalValueGreaterThanEqualsAccess().getRule();
-	}
-	
-	//DecimalValueLessThanEquals:
-	//	LTE HASH value=Decimal;
-	public EclGrammarAccess.DecimalValueLessThanEqualsElements getDecimalValueLessThanEqualsAccess() {
-		return gaEcl.getDecimalValueLessThanEqualsAccess();
-	}
-	
-	public ParserRule getDecimalValueLessThanEqualsRule() {
-		return getDecimalValueLessThanEqualsAccess().getRule();
+	public ParserRule getDecimalValueComparisonRule() {
+		return getDecimalValueComparisonAccess().getRule();
 	}
 	
 	//NestedExpression:
@@ -2499,10 +2368,321 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getNestedExpressionAccess().getRule();
 	}
 	
-	//// hidden grammar rules
-	//SnomedIdentifier hidden():
-	//	DIGIT_NONZERO (DIGIT_NONZERO | ZERO) (DIGIT_NONZERO | ZERO) (DIGIT_NONZERO | ZERO) (DIGIT_NONZERO | ZERO)
-	//	(DIGIT_NONZERO | ZERO)+;
+	//// filters
+	//FilterConstraint:
+	//	DOUBLE_CURLY_OPEN Filter DOUBLE_CURLY_CLOSE;
+	public EclGrammarAccess.FilterConstraintElements getFilterConstraintAccess() {
+		return gaEcl.getFilterConstraintAccess();
+	}
+	
+	public ParserRule getFilterConstraintRule() {
+		return getFilterConstraintAccess().getRule();
+	}
+	
+	//Filter:
+	//	DisjunctionFilter;
+	public EclGrammarAccess.FilterElements getFilterAccess() {
+		return gaEcl.getFilterAccess();
+	}
+	
+	public ParserRule getFilterRule() {
+		return getFilterAccess().getRule();
+	}
+	
+	//// Conjunction (OR) of filters is an extension to ECL 1.5
+	//DisjunctionFilter Filter:
+	//	ConjunctionFilter ({DisjunctionFilter.left=current} DISJUNCTION_KEYWORD right=ConjunctionFilter)*;
+	public EclGrammarAccess.DisjunctionFilterElements getDisjunctionFilterAccess() {
+		return gaEcl.getDisjunctionFilterAccess();
+	}
+	
+	public ParserRule getDisjunctionFilterRule() {
+		return getDisjunctionFilterAccess().getRule();
+	}
+	
+	//// Using the "AND" keyword for disjunctions is an extension to ECL 1.5
+	//ConjunctionFilter Filter:
+	//	PropertyFilter ({ConjunctionFilter.left=current} (CONJUNCTION_KEYWORD | COMMA) right=PropertyFilter)*;
+	public EclGrammarAccess.ConjunctionFilterElements getConjunctionFilterAccess() {
+		return gaEcl.getConjunctionFilterAccess();
+	}
+	
+	public ParserRule getConjunctionFilterRule() {
+		return getConjunctionFilterAccess().getRule();
+	}
+	
+	//NestedFilter:
+	//	ROUND_OPEN nested=Filter ROUND_CLOSE;
+	public EclGrammarAccess.NestedFilterElements getNestedFilterAccess() {
+		return gaEcl.getNestedFilterAccess();
+	}
+	
+	public ParserRule getNestedFilterRule() {
+		return getNestedFilterAccess().getRule();
+	}
+	
+	//PropertyFilter:
+	//	TermFilter
+	//	| LanguageFilter
+	//	| TypeFilter
+	//	| DialectFilter
+	//	// QL 0.1 filters (ECL extensions)	 
+	//	| ActiveFilter
+	//	| PreferredInFilter
+	//	| AcceptableInFilter
+	//	| LanguageRefSetFilter
+	//	| ModuleFilter
+	//	| SemanticTagFilter
+	//	| EffectiveTimeFilter
+	//	| CaseSignificanceFilter
+	//	// Allows grouping filters for boolean operators
+	//	| NestedFilter;
+	public EclGrammarAccess.PropertyFilterElements getPropertyFilterAccess() {
+		return gaEcl.getPropertyFilterAccess();
+	}
+	
+	public ParserRule getPropertyFilterRule() {
+		return getPropertyFilterAccess().getRule();
+	}
+	
+	//TermFilter:
+	//	TERM_KEYWORD (TypedTermFilter | TypedTermFilterSet);
+	public EclGrammarAccess.TermFilterElements getTermFilterAccess() {
+		return gaEcl.getTermFilterAccess();
+	}
+	
+	public ParserRule getTermFilterRule() {
+		return getTermFilterAccess().getRule();
+	}
+	
+	//// no special treatment for the term filter STRING, we allow everything for any lexical search type
+	//TypedTermFilter:
+	//	op=NON_NUMERIC_OPERATOR (lexicalSearchType=LEXICAL_SEARCH_TYPE COLON)? term=STRING;
+	public EclGrammarAccess.TypedTermFilterElements getTypedTermFilterAccess() {
+		return gaEcl.getTypedTermFilterAccess();
+	}
+	
+	public ParserRule getTypedTermFilterRule() {
+		return getTypedTermFilterAccess().getRule();
+	}
+	
+	//TypedTermFilterSet:
+	//	op=NON_NUMERIC_OPERATOR ROUND_OPEN terms+=TypedTermFilter+ ROUND_CLOSE;
+	public EclGrammarAccess.TypedTermFilterSetElements getTypedTermFilterSetAccess() {
+		return gaEcl.getTypedTermFilterSetAccess();
+	}
+	
+	public ParserRule getTypedTermFilterSetRule() {
+		return getTypedTermFilterSetAccess().getRule();
+	}
+	
+	//LanguageFilter:
+	//	LANGUAGE_KEYWORD op=NON_NUMERIC_OPERATOR (languageCodes+=UnquotedString | ROUND_OPEN languageCodes+=UnquotedString+
+	//	ROUND_CLOSE);
+	public EclGrammarAccess.LanguageFilterElements getLanguageFilterAccess() {
+		return gaEcl.getLanguageFilterAccess();
+	}
+	
+	public ParserRule getLanguageFilterRule() {
+		return getLanguageFilterAccess().getRule();
+	}
+	
+	//TypeFilter:
+	//	TypeIdFilter | TypeTokenFilter;
+	public EclGrammarAccess.TypeFilterElements getTypeFilterAccess() {
+		return gaEcl.getTypeFilterAccess();
+	}
+	
+	public ParserRule getTypeFilterRule() {
+		return getTypeFilterAccess().getRule();
+	}
+	
+	//TypeIdFilter:
+	//	TYPEID_KEYWORD op=NON_NUMERIC_OPERATOR type=(EclConceptReference | EclConceptReferenceSet);
+	public EclGrammarAccess.TypeIdFilterElements getTypeIdFilterAccess() {
+		return gaEcl.getTypeIdFilterAccess();
+	}
+	
+	public ParserRule getTypeIdFilterRule() {
+		return getTypeIdFilterAccess().getRule();
+	}
+	
+	//// Any unquoted string is allowed as a type token here, validator will restrict it to the available set
+	//TypeTokenFilter:
+	//	TYPE_KEYWORD op=NON_NUMERIC_OPERATOR (tokens+=UnquotedString | ROUND_OPEN tokens+=UnquotedString+ ROUND_CLOSE);
+	public EclGrammarAccess.TypeTokenFilterElements getTypeTokenFilterAccess() {
+		return gaEcl.getTypeTokenFilterAccess();
+	}
+	
+	public ParserRule getTypeTokenFilterRule() {
+		return getTypeTokenFilterAccess().getRule();
+	}
+	
+	//DialectFilter:
+	//	DialectIdFilter | DialectAliasFilter;
+	public EclGrammarAccess.DialectFilterElements getDialectFilterAccess() {
+		return gaEcl.getDialectFilterAccess();
+	}
+	
+	public ParserRule getDialectFilterRule() {
+		return getDialectFilterAccess().getRule();
+	}
+	
+	//DialectIdFilter:
+	//	DIALECTID_KEYWORD op=NON_NUMERIC_OPERATOR (dialects+=Dialect | ROUND_OPEN dialects+=Dialect+ ROUND_CLOSE);
+	public EclGrammarAccess.DialectIdFilterElements getDialectIdFilterAccess() {
+		return gaEcl.getDialectIdFilterAccess();
+	}
+	
+	public ParserRule getDialectIdFilterRule() {
+		return getDialectIdFilterAccess().getRule();
+	}
+	
+	//DialectAliasFilter:
+	//	DIALECT_KEYWORD op=NON_NUMERIC_OPERATOR (dialects+=DialectAlias | ROUND_OPEN dialects+=DialectAlias+ ROUND_CLOSE);
+	public EclGrammarAccess.DialectAliasFilterElements getDialectAliasFilterAccess() {
+		return gaEcl.getDialectAliasFilterAccess();
+	}
+	
+	public ParserRule getDialectAliasFilterRule() {
+		return getDialectAliasFilterAccess().getRule();
+	}
+	
+	//Dialect:
+	//	languageRefSetId=EclConceptReference acceptability=Acceptability?;
+	public EclGrammarAccess.DialectElements getDialectAccess() {
+		return gaEcl.getDialectAccess();
+	}
+	
+	public ParserRule getDialectRule() {
+		return getDialectAccess().getRule();
+	}
+	
+	//// Whitespace is significant (indicates an unquoted string boundary) in this rule, so WS tokens can not be hidden
+	//DialectAlias hidden():
+	//	alias=DialectAliasValue WS* acceptability=Acceptability?;
+	public EclGrammarAccess.DialectAliasElements getDialectAliasAccess() {
+		return gaEcl.getDialectAliasAccess();
+	}
+	
+	public ParserRule getDialectAliasRule() {
+		return getDialectAliasAccess().getRule();
+	}
+	
+	//Acceptability:
+	//	AcceptabilityIdSet | AcceptabilityTokenSet;
+	public EclGrammarAccess.AcceptabilityElements getAcceptabilityAccess() {
+		return gaEcl.getAcceptabilityAccess();
+	}
+	
+	public ParserRule getAcceptabilityRule() {
+		return getAcceptabilityAccess().getRule();
+	}
+	
+	//AcceptabilityIdSet:
+	//	acceptabilities=EclConceptReferenceSet;
+	public EclGrammarAccess.AcceptabilityIdSetElements getAcceptabilityIdSetAccess() {
+		return gaEcl.getAcceptabilityIdSetAccess();
+	}
+	
+	public ParserRule getAcceptabilityIdSetRule() {
+		return getAcceptabilityIdSetAccess().getRule();
+	}
+	
+	//AcceptabilityTokenSet:
+	//	ROUND_OPEN acceptabilities+=UnquotedString+ ROUND_CLOSE;
+	public EclGrammarAccess.AcceptabilityTokenSetElements getAcceptabilityTokenSetAccess() {
+		return gaEcl.getAcceptabilityTokenSetAccess();
+	}
+	
+	public ParserRule getAcceptabilityTokenSetRule() {
+		return getAcceptabilityTokenSetAccess().getRule();
+	}
+	
+	//ActiveFilter:
+	//	(domain=DOMAIN DOT)? ACTIVE_KEYWORD EQUAL active=Boolean;
+	public EclGrammarAccess.ActiveFilterElements getActiveFilterAccess() {
+		return gaEcl.getActiveFilterAccess();
+	}
+	
+	public ParserRule getActiveFilterRule() {
+		return getActiveFilterAccess().getRule();
+	}
+	
+	//ModuleFilter:
+	//	(domain=DOMAIN DOT)? MODULEID_KEYWORD EQUAL moduleId=ExpressionConstraint;
+	public EclGrammarAccess.ModuleFilterElements getModuleFilterAccess() {
+		return gaEcl.getModuleFilterAccess();
+	}
+	
+	public ParserRule getModuleFilterRule() {
+		return getModuleFilterAccess().getRule();
+	}
+	
+	//SemanticTagFilter:
+	//	(domain=DOMAIN DOT)? SEMANTIC_TAG_KEYWORD op=NON_NUMERIC_OPERATOR semanticTag=STRING;
+	public EclGrammarAccess.SemanticTagFilterElements getSemanticTagFilterAccess() {
+		return gaEcl.getSemanticTagFilterAccess();
+	}
+	
+	public ParserRule getSemanticTagFilterRule() {
+		return getSemanticTagFilterAccess().getRule();
+	}
+	
+	//EffectiveTimeFilter:
+	//	(domain=DOMAIN DOT)? EFFECTIVE_TIME_KEYWORD op=NUMERIC_OPERATOR effectiveTime=STRING;
+	public EclGrammarAccess.EffectiveTimeFilterElements getEffectiveTimeFilterAccess() {
+		return gaEcl.getEffectiveTimeFilterAccess();
+	}
+	
+	public ParserRule getEffectiveTimeFilterRule() {
+		return getEffectiveTimeFilterAccess().getRule();
+	}
+	
+	//PreferredInFilter:
+	//	PREFERRED_IN_KEYWORD EQUAL languageRefSetId=ExpressionConstraint;
+	public EclGrammarAccess.PreferredInFilterElements getPreferredInFilterAccess() {
+		return gaEcl.getPreferredInFilterAccess();
+	}
+	
+	public ParserRule getPreferredInFilterRule() {
+		return getPreferredInFilterAccess().getRule();
+	}
+	
+	//AcceptableInFilter:
+	//	ACCEPTABLE_IN_KEYWORD EQUAL languageRefSetId=ExpressionConstraint;
+	public EclGrammarAccess.AcceptableInFilterElements getAcceptableInFilterAccess() {
+		return gaEcl.getAcceptableInFilterAccess();
+	}
+	
+	public ParserRule getAcceptableInFilterRule() {
+		return getAcceptableInFilterAccess().getRule();
+	}
+	
+	//LanguageRefSetFilter:
+	//	LANGUAGE_REFSET_ID_KEYWORD EQUAL languageRefSetId=ExpressionConstraint;
+	public EclGrammarAccess.LanguageRefSetFilterElements getLanguageRefSetFilterAccess() {
+		return gaEcl.getLanguageRefSetFilterAccess();
+	}
+	
+	public ParserRule getLanguageRefSetFilterRule() {
+		return getLanguageRefSetFilterAccess().getRule();
+	}
+	
+	//CaseSignificanceFilter:
+	//	CASE_SIGNIFICANCE_ID_KEYWORD EQUAL caseSignificanceId=ExpressionConstraint;
+	public EclGrammarAccess.CaseSignificanceFilterElements getCaseSignificanceFilterAccess() {
+		return gaEcl.getCaseSignificanceFilterAccess();
+	}
+	
+	public ParserRule getCaseSignificanceFilterRule() {
+		return getCaseSignificanceFilterAccess().getRule();
+	}
+	
+	///*
+	// * Datatype rules
+	// */ SnomedIdentifier hidden():
+	//	(DIGIT_NONZERO | DIGIT_ZERO)+;
 	public EclGrammarAccess.SnomedIdentifierElements getSnomedIdentifierAccess() {
 		return gaEcl.getSnomedIdentifierAccess();
 	}
@@ -2512,13 +2692,23 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//NonNegativeInteger ecore::EInt hidden():
-	//	ZERO | DIGIT_NONZERO (DIGIT_NONZERO | ZERO)*;
+	//	(DIGIT_NONZERO | DIGIT_ZERO)+;
 	public EclGrammarAccess.NonNegativeIntegerElements getNonNegativeIntegerAccess() {
 		return gaEcl.getNonNegativeIntegerAccess();
 	}
 	
 	public ParserRule getNonNegativeIntegerRule() {
 		return getNonNegativeIntegerAccess().getRule();
+	}
+	
+	//NonNegativeDecimal ecore::EBigDecimal hidden():
+	//	NonNegativeInteger DOT (DIGIT_NONZERO | DIGIT_ZERO)*;
+	public EclGrammarAccess.NonNegativeDecimalElements getNonNegativeDecimalAccess() {
+		return gaEcl.getNonNegativeDecimalAccess();
+	}
+	
+	public ParserRule getNonNegativeDecimalRule() {
+		return getNonNegativeDecimalAccess().getRule();
 	}
 	
 	//MaxValue ecore::EInt hidden():
@@ -2551,18 +2741,8 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getDecimalAccess().getRule();
 	}
 	
-	//NonNegativeDecimal ecore::EBigDecimal hidden():
-	//	NonNegativeInteger DOT (DIGIT_NONZERO | ZERO)*;
-	public EclGrammarAccess.NonNegativeDecimalElements getNonNegativeDecimalAccess() {
-		return gaEcl.getNonNegativeDecimalAccess();
-	}
-	
-	public ParserRule getNonNegativeDecimalRule() {
-		return getNonNegativeDecimalAccess().getRule();
-	}
-	
 	//Boolean ecore::EBoolean hidden():
-	//	'true' | 'false';
+	//	TRUE_KEYWORD | FALSE_KEYWORD;
 	public EclGrammarAccess.BooleanElements getBooleanAccess() {
 		return gaEcl.getBooleanAccess();
 	}
@@ -2571,16 +2751,341 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getBooleanAccess().getRule();
 	}
 	
-	//terminal TERM_STRING:
-	//	"|" !"|"* "|";
-	public TerminalRule getTERM_STRINGRule() {
-		return gaEcl.getTERM_STRINGRule();
+	//// Unquoted strings also need to cover any keywords caught by the lexer, earlier in the process. They are terminated by whitespace.
+	//UnquotedString:
+	//	CASE_SIGNIFICANCE_ID_KEYWORD
+	//	| LANGUAGE_REFSET_ID_KEYWORD
+	//	| EFFECTIVE_TIME_KEYWORD
+	//	| ACCEPTABLE_IN_KEYWORD
+	//	| DESCRIPTION_KEYWORD
+	//	| PREFERRED_IN_KEYWORD
+	//	| SEMANTIC_TAG_KEYWORD
+	//	| DIALECTID_KEYWORD
+	//	| LANGUAGE_KEYWORD
+	//	| MODULEID_KEYWORD
+	//	| CONCEPT_KEYWORD
+	//	| DIALECT_KEYWORD
+	//	| ACTIVE_KEYWORD
+	//	| TYPEID_KEYWORD
+	//	| EXCLUSION_KEYWORD
+	//	| EXACT_KEYWORD
+	//	| FALSE_KEYWORD
+	//	| MATCH_KEYWORD
+	//	| REGEX_KEYWORD
+	//	| TERM_KEYWORD
+	//	| TRUE_KEYWORD
+	//	| TYPE_KEYWORD
+	//	| WILD_KEYWORD
+	//	| CONJUNCTION_KEYWORD
+	//	| DISJUNCTION_KEYWORD
+	//	| REVERSED
+	//	| KEYWORD;
+	public EclGrammarAccess.UnquotedStringElements getUnquotedStringAccess() {
+		return gaEcl.getUnquotedStringAccess();
+	}
+	
+	public ParserRule getUnquotedStringRule() {
+		return getUnquotedStringAccess().getRule();
+	}
+	
+	//DialectAliasValue hidden():
+	//	(DASH | UnquotedString | DIGIT_ZERO | DIGIT_NONZERO)+;
+	public EclGrammarAccess.DialectAliasValueElements getDialectAliasValueAccess() {
+		return gaEcl.getDialectAliasValueAccess();
+	}
+	
+	public ParserRule getDialectAliasValueRule() {
+		return getDialectAliasValueAccess().getRule();
+	}
+	
+	//LEXICAL_SEARCH_TYPE // Lexical search types supported in ECL 1.5 
+	//:
+	//	MATCH_KEYWORD
+	//	| WILD_KEYWORD
+	//	// Lexical search type extensions
+	//	| REGEX_KEYWORD
+	//	| EXACT_KEYWORD;
+	public EclGrammarAccess.LEXICAL_SEARCH_TYPEElements getLEXICAL_SEARCH_TYPEAccess() {
+		return gaEcl.getLEXICAL_SEARCH_TYPEAccess();
+	}
+	
+	public ParserRule getLEXICAL_SEARCH_TYPERule() {
+		return getLEXICAL_SEARCH_TYPEAccess().getRule();
+	}
+	
+	//DOMAIN:
+	//	CONCEPT_KEYWORD
+	//	| DESCRIPTION_KEYWORD;
+	public EclGrammarAccess.DOMAINElements getDOMAINAccess() {
+		return gaEcl.getDOMAINAccess();
+	}
+	
+	public ParserRule getDOMAINRule() {
+		return getDOMAINAccess().getRule();
+	}
+	
+	//NON_NUMERIC_OPERATOR:
+	//	EQUAL | NOT_EQUAL;
+	public EclGrammarAccess.NON_NUMERIC_OPERATORElements getNON_NUMERIC_OPERATORAccess() {
+		return gaEcl.getNON_NUMERIC_OPERATORAccess();
+	}
+	
+	public ParserRule getNON_NUMERIC_OPERATORRule() {
+		return getNON_NUMERIC_OPERATORAccess().getRule();
+	}
+	
+	//NUMERIC_OPERATOR:
+	//	EQUAL | NOT_EQUAL | GT | LT | GTE | LTE;
+	public EclGrammarAccess.NUMERIC_OPERATORElements getNUMERIC_OPERATORAccess() {
+		return gaEcl.getNUMERIC_OPERATORAccess();
+	}
+	
+	public ParserRule getNUMERIC_OPERATORRule() {
+		return getNUMERIC_OPERATORAccess().getRule();
+	}
+	
+	//terminal CASE_SIGNIFICANCE_ID_KEYWORD:
+	//	'caseSignificanceId' | ('C' | 'c') ('A' | 'a') ('S' | 's') ('E' | 'e') ('S' | 's') ('I' | 'i') ('G' | 'g') ('N' | 'n')
+	//	('I' | 'i') ('F' | 'f') ('I' | 'i') ('C' | 'c') ('A' | 'a') ('N' | 'n') ('C' | 'c') ('E' | 'e') ('I' | 'i') ('D' |
+	//	'd');
+	public TerminalRule getCASE_SIGNIFICANCE_ID_KEYWORDRule() {
+		return gaEcl.getCASE_SIGNIFICANCE_ID_KEYWORDRule();
+	}
+	
+	//terminal LANGUAGE_REFSET_ID_KEYWORD:
+	//	'languageRefsetId' | ('L' | 'l') ('A' | 'a') ('N' | 'n') ('G' | 'g') ('U' | 'u') ('A' | 'a') ('G' | 'g') ('E' | 'e')
+	//	('R' | 'r') ('E' | 'e') ('F' | 'f') ('S' | 's') ('E' | 'e') ('T' | 't') ('I' | 'i') ('D' | 'd');
+	public TerminalRule getLANGUAGE_REFSET_ID_KEYWORDRule() {
+		return gaEcl.getLANGUAGE_REFSET_ID_KEYWORDRule();
+	}
+	
+	//terminal EFFECTIVE_TIME_KEYWORD:
+	//	'effectiveTime' | ('E' | 'e') ('F' | 'f') ('F' | 'f') ('E' | 'e') ('C' | 'c') ('T' | 't') ('I' | 'i') ('V' | 'v') ('E'
+	//	| 'e') ('T' | 't') ('I' | 'i') ('M' | 'm') ('E' | 'e');
+	public TerminalRule getEFFECTIVE_TIME_KEYWORDRule() {
+		return gaEcl.getEFFECTIVE_TIME_KEYWORDRule();
+	}
+	
+	//terminal ACCEPTABLE_IN_KEYWORD:
+	//	'acceptableIn' | ('A' | 'a') ('C' | 'c') ('C' | 'c') ('E' | 'e') ('P' | 'p') ('T' | 't') ('A' | 'a') ('B' | 'b') ('L'
+	//	| 'l') ('E' | 'e') ('I' | 'i') ('N' | 'n');
+	public TerminalRule getACCEPTABLE_IN_KEYWORDRule() {
+		return gaEcl.getACCEPTABLE_IN_KEYWORDRule();
+	}
+	
+	//terminal DESCRIPTION_KEYWORD:
+	//	'Description' | ('D' | 'd') ('E' | 'e') ('S' | 's') ('C' | 'c') ('R' | 'r') ('I' | 'i') ('P' | 'p') ('T' | 't') ('I' |
+	//	'i') ('O' | 'o') ('N' | 'n');
+	public TerminalRule getDESCRIPTION_KEYWORDRule() {
+		return gaEcl.getDESCRIPTION_KEYWORDRule();
+	}
+	
+	//terminal PREFERRED_IN_KEYWORD:
+	//	'preferredIn' | ('P' | 'p') ('R' | 'r') ('E' | 'e') ('F' | 'f') ('E' | 'e') ('R' | 'r') ('R' | 'r') ('E' | 'e') ('D' |
+	//	'd') ('I' | 'i') ('N' | 'n');
+	public TerminalRule getPREFERRED_IN_KEYWORDRule() {
+		return gaEcl.getPREFERRED_IN_KEYWORDRule();
+	}
+	
+	//terminal SEMANTIC_TAG_KEYWORD:
+	//	'semanticTag' | ('S' | 's') ('E' | 'e') ('M' | 'm') ('A' | 'a') ('N' | 'n') ('T' | 't') ('I' | 'i') ('C' | 'c') ('T' |
+	//	't') ('A' | 'a') ('G' | 'g');
+	public TerminalRule getSEMANTIC_TAG_KEYWORDRule() {
+		return gaEcl.getSEMANTIC_TAG_KEYWORDRule();
+	}
+	
+	//terminal DIALECTID_KEYWORD:
+	//	'dialectId' | ('D' | 'd') ('I' | 'i') ('A' | 'a') ('L' | 'l') ('E' | 'e') ('C' | 'c') ('T' | 't') ('I' | 'i') ('D' |
+	//	'd');
+	public TerminalRule getDIALECTID_KEYWORDRule() {
+		return gaEcl.getDIALECTID_KEYWORDRule();
+	}
+	
+	//terminal LANGUAGE_KEYWORD:
+	//	'language' | ('L' | 'l') ('A' | 'a') ('N' | 'n') ('G' | 'g') ('U' | 'u') ('A' | 'a') ('G' | 'g') ('E' | 'e');
+	public TerminalRule getLANGUAGE_KEYWORDRule() {
+		return gaEcl.getLANGUAGE_KEYWORDRule();
+	}
+	
+	//terminal MODULEID_KEYWORD:
+	//	'moduleId' | ('M' | 'm') ('O' | 'o') ('D' | 'd') ('U' | 'u') ('L' | 'l') ('E' | 'e') ('I' | 'i') ('D' | 'd');
+	public TerminalRule getMODULEID_KEYWORDRule() {
+		return gaEcl.getMODULEID_KEYWORDRule();
+	}
+	
+	//terminal CONCEPT_KEYWORD:
+	//	'Concept' | ('C' | 'c') ('O' | 'o') ('N' | 'n') ('C' | 'c') ('E' | 'e') ('P' | 'p') ('T' | 't');
+	public TerminalRule getCONCEPT_KEYWORDRule() {
+		return gaEcl.getCONCEPT_KEYWORDRule();
+	}
+	
+	//terminal DIALECT_KEYWORD:
+	//	'dialect' | ('D' | 'd') ('I' | 'i') ('A' | 'a') ('L' | 'l') ('E' | 'e') ('C' | 'c') ('T' | 't');
+	public TerminalRule getDIALECT_KEYWORDRule() {
+		return gaEcl.getDIALECT_KEYWORDRule();
+	}
+	
+	//terminal ACTIVE_KEYWORD:
+	//	'active' | ('A' | 'a') ('C' | 'c') ('T' | 't') ('I' | 'i') ('V' | 'v') ('E' | 'e');
+	public TerminalRule getACTIVE_KEYWORDRule() {
+		return gaEcl.getACTIVE_KEYWORDRule();
+	}
+	
+	//terminal TYPEID_KEYWORD:
+	//	'typeId' | ('T' | 't') ('Y' | 'y') ('P' | 'p') ('E' | 'e') ('I' | 'i') ('D' | 'd');
+	public TerminalRule getTYPEID_KEYWORDRule() {
+		return gaEcl.getTYPEID_KEYWORDRule();
+	}
+	
+	//terminal EXCLUSION_KEYWORD:
+	//	'MINUS' | ('M' | 'm') ('I' | 'i') ('N' | 'n') ('U' | 'u') ('S' | 's');
+	public TerminalRule getEXCLUSION_KEYWORDRule() {
+		return gaEcl.getEXCLUSION_KEYWORDRule();
+	}
+	
+	//terminal EXACT_KEYWORD:
+	//	'exact' | ('E' | 'e') ('X' | 'x') ('A' | 'a') ('C' | 'c') ('T' | 't');
+	public TerminalRule getEXACT_KEYWORDRule() {
+		return gaEcl.getEXACT_KEYWORDRule();
+	}
+	
+	//terminal FALSE_KEYWORD:
+	//	'false' | ('F' | 'f') ('A' | 'a') ('L' | 'l') ('S' | 's') ('E' | 'e');
+	public TerminalRule getFALSE_KEYWORDRule() {
+		return gaEcl.getFALSE_KEYWORDRule();
+	}
+	
+	//terminal MATCH_KEYWORD:
+	//	'match' | ('M' | 'm') ('A' | 'a') ('T' | 't') ('C' | 'c') ('H' | 'h');
+	public TerminalRule getMATCH_KEYWORDRule() {
+		return gaEcl.getMATCH_KEYWORDRule();
+	}
+	
+	//terminal REGEX_KEYWORD:
+	//	'regex' | ('R' | 'r') ('E' | 'e') ('G' | 'g') ('E' | 'e') ('X' | 'x');
+	public TerminalRule getREGEX_KEYWORDRule() {
+		return gaEcl.getREGEX_KEYWORDRule();
+	}
+	
+	//terminal TERM_KEYWORD:
+	//	'term' | ('T' | 't') ('E' | 'e') ('R' | 'r') ('M' | 'm');
+	public TerminalRule getTERM_KEYWORDRule() {
+		return gaEcl.getTERM_KEYWORDRule();
+	}
+	
+	//terminal TRUE_KEYWORD:
+	//	'true' | ('T' | 't') ('R' | 'r') ('U' | 'u') ('E' | 'e');
+	public TerminalRule getTRUE_KEYWORDRule() {
+		return gaEcl.getTRUE_KEYWORDRule();
+	}
+	
+	//terminal TYPE_KEYWORD:
+	//	'type' | ('T' | 't') ('Y' | 'y') ('P' | 'p') ('E' | 'e');
+	public TerminalRule getTYPE_KEYWORDRule() {
+		return gaEcl.getTYPE_KEYWORDRule();
+	}
+	
+	//terminal WILD_KEYWORD:
+	//	'wild' | ('W' | 'w') ('I' | 'i') ('L' | 'l') ('D' | 'd');
+	public TerminalRule getWILD_KEYWORDRule() {
+		return gaEcl.getWILD_KEYWORDRule();
+	}
+	
+	//terminal CONJUNCTION_KEYWORD:
+	//	'AND' | ('A' | 'a') ('N' | 'n') ('D' | 'd');
+	public TerminalRule getCONJUNCTION_KEYWORDRule() {
+		return gaEcl.getCONJUNCTION_KEYWORDRule();
+	}
+	
+	//terminal DISJUNCTION_KEYWORD:
+	//	'OR' | ('O' | 'o') ('R' | 'r');
+	public TerminalRule getDISJUNCTION_KEYWORDRule() {
+		return gaEcl.getDISJUNCTION_KEYWORDRule();
 	}
 	
 	//terminal REVERSED:
 	//	'R';
 	public TerminalRule getREVERSEDRule() {
 		return gaEcl.getREVERSEDRule();
+	}
+	
+	//terminal KEYWORD:
+	//	'a'..'z' | 'A'..'Z'+;
+	public TerminalRule getKEYWORDRule() {
+		return gaEcl.getKEYWORDRule();
+	}
+	
+	//terminal DBL_LT_EM:
+	//	'<<!';
+	public TerminalRule getDBL_LT_EMRule() {
+		return gaEcl.getDBL_LT_EMRule();
+	}
+	
+	//terminal DBL_GT_EM:
+	//	'>>!';
+	public TerminalRule getDBL_GT_EMRule() {
+		return gaEcl.getDBL_GT_EMRule();
+	}
+	
+	//terminal DBL_LT:
+	//	'<<';
+	public TerminalRule getDBL_LTRule() {
+		return gaEcl.getDBL_LTRule();
+	}
+	
+	//terminal DBL_GT:
+	//	'>>';
+	public TerminalRule getDBL_GTRule() {
+		return gaEcl.getDBL_GTRule();
+	}
+	
+	//terminal LT_EM:
+	//	'<!';
+	public TerminalRule getLT_EMRule() {
+		return gaEcl.getLT_EMRule();
+	}
+	
+	//terminal GT_EM:
+	//	'>!';
+	public TerminalRule getGT_EMRule() {
+		return gaEcl.getGT_EMRule();
+	}
+	
+	//terminal GTE:
+	//	'>=';
+	public TerminalRule getGTERule() {
+		return gaEcl.getGTERule();
+	}
+	
+	//terminal LTE:
+	//	'<=';
+	public TerminalRule getLTERule() {
+		return gaEcl.getLTERule();
+	}
+	
+	//terminal DOUBLE_CURLY_OPEN:
+	//	'{{';
+	public TerminalRule getDOUBLE_CURLY_OPENRule() {
+		return gaEcl.getDOUBLE_CURLY_OPENRule();
+	}
+	
+	//terminal DOUBLE_CURLY_CLOSE:
+	//	'}}';
+	public TerminalRule getDOUBLE_CURLY_CLOSERule() {
+		return gaEcl.getDOUBLE_CURLY_CLOSERule();
+	}
+	
+	//terminal PIPE_DELIMITED_STRING:
+	//	"|"->"|";
+	public TerminalRule getPIPE_DELIMITED_STRINGRule() {
+		return gaEcl.getPIPE_DELIMITED_STRINGRule();
+	}
+	
+	//terminal STRING:
+	//	'"' ('\\' . | !('\\' | '"'))* '"' |
+	//	"'" ('\\' . | !('\\' | "'"))* "'";
+	public TerminalRule getSTRINGRule() {
+		return gaEcl.getSTRINGRule();
 	}
 	
 	//terminal TO:
@@ -2595,28 +3100,10 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return gaEcl.getCOMMARule();
 	}
 	
-	//terminal CONJUNCTION:
-	//	('a' | 'A') ('n' | 'N') ('d' | 'D');
-	public TerminalRule getCONJUNCTIONRule() {
-		return gaEcl.getCONJUNCTIONRule();
-	}
-	
-	//terminal DISJUNCTION:
-	//	('o' | 'O') ('r' | 'R');
-	public TerminalRule getDISJUNCTIONRule() {
-		return gaEcl.getDISJUNCTIONRule();
-	}
-	
-	//terminal EXCLUSION:
-	//	('m' | 'M') ('i' | 'I') ('n' | 'N') ('u' | 'U') ('s' | 'S');
-	public TerminalRule getEXCLUSIONRule() {
-		return gaEcl.getEXCLUSIONRule();
-	}
-	
-	//terminal ZERO:
+	//terminal DIGIT_ZERO:
 	//	'0';
-	public TerminalRule getZERORule() {
-		return gaEcl.getZERORule();
+	public TerminalRule getDIGIT_ZERORule() {
+		return gaEcl.getDIGIT_ZERORule();
 	}
 	
 	//terminal DIGIT_NONZERO:
@@ -2721,54 +3208,6 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return gaEcl.getGTRule();
 	}
 	
-	//terminal DBL_LT:
-	//	'<<';
-	public TerminalRule getDBL_LTRule() {
-		return gaEcl.getDBL_LTRule();
-	}
-	
-	//terminal DBL_GT:
-	//	'>>';
-	public TerminalRule getDBL_GTRule() {
-		return gaEcl.getDBL_GTRule();
-	}
-	
-	//terminal LT_EM:
-	//	'<!';
-	public TerminalRule getLT_EMRule() {
-		return gaEcl.getLT_EMRule();
-	}
-	
-	//terminal DBL_LT_EM:
-	//	'<<!';
-	public TerminalRule getDBL_LT_EMRule() {
-		return gaEcl.getDBL_LT_EMRule();
-	}
-	
-	//terminal GT_EM:
-	//	'>!';
-	public TerminalRule getGT_EMRule() {
-		return gaEcl.getGT_EMRule();
-	}
-	
-	//terminal DBL_GT_EM:
-	//	'>>!';
-	public TerminalRule getDBL_GT_EMRule() {
-		return gaEcl.getDBL_GT_EMRule();
-	}
-	
-	//terminal GTE:
-	//	'>=';
-	public TerminalRule getGTERule() {
-		return gaEcl.getGTERule();
-	}
-	
-	//terminal LTE:
-	//	'<=';
-	public TerminalRule getLTERule() {
-		return gaEcl.getLTERule();
-	}
-	
 	//terminal HASH:
 	//	'#';
 	public TerminalRule getHASHRule() {
@@ -2791,12 +3230,5 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//	'//' !('\n' | '\r')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaEcl.getSL_COMMENTRule();
-	}
-	
-	//terminal STRING:
-	//	'"' ('\\' . | !('\\' | '"'))* '"' |
-	//	"'" ('\\' . | !('\\' | "'"))* "'";
-	public TerminalRule getSTRINGRule() {
-		return gaEcl.getSTRINGRule();
 	}
 }

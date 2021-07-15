@@ -33,9 +33,11 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected EtlGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0;
-	protected AbstractElementAlias match_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0;
-	protected AbstractElementAlias match_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTIONTerminalRuleCall_1_0_1_0;
+	protected AbstractElementAlias match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0;
+	protected AbstractElementAlias match_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0;
+	protected AbstractElementAlias match_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0;
+	protected AbstractElementAlias match_ConjunctionFilter_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0;
+	protected AbstractElementAlias match_DialectAlias_WSTerminalRuleCall_1_a;
 	protected AbstractElementAlias match_EtlCardinality_TILDETerminalRuleCall_0_q;
 	protected AbstractElementAlias match_ExpressionReplacementSlot_SCGTerminalRuleCall_3_q;
 	protected AbstractElementAlias match_ExpressionTemplate_EQUIVALENT_TOTerminalRuleCall_1_0_0_1_q;
@@ -44,9 +46,11 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (EtlGrammarAccess) access;
-		match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndAttributeSetAccess().getCOMMATerminalRuleCall_1_1_1()), new TokenAlias(false, false, grammarAccess.getAndAttributeSetAccess().getCONJUNCTIONTerminalRuleCall_1_1_0()));
-		match_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndExpressionConstraintAccess().getCOMMATerminalRuleCall_1_1_1()), new TokenAlias(false, false, grammarAccess.getAndExpressionConstraintAccess().getCONJUNCTIONTerminalRuleCall_1_1_0()));
-		match_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTIONTerminalRuleCall_1_0_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndRefinementAccess().getCOMMATerminalRuleCall_1_0_1_1()), new TokenAlias(false, false, grammarAccess.getAndRefinementAccess().getCONJUNCTIONTerminalRuleCall_1_0_1_0()));
+		match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndAttributeSetAccess().getCOMMATerminalRuleCall_1_1_1()), new TokenAlias(false, false, grammarAccess.getAndAttributeSetAccess().getCONJUNCTION_KEYWORDTerminalRuleCall_1_1_0()));
+		match_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndExpressionConstraintAccess().getCOMMATerminalRuleCall_1_1_1()), new TokenAlias(false, false, grammarAccess.getAndExpressionConstraintAccess().getCONJUNCTION_KEYWORDTerminalRuleCall_1_1_0()));
+		match_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndRefinementAccess().getCOMMATerminalRuleCall_1_0_1_1()), new TokenAlias(false, false, grammarAccess.getAndRefinementAccess().getCONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0()));
+		match_ConjunctionFilter_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConjunctionFilterAccess().getCOMMATerminalRuleCall_1_1_1()), new TokenAlias(false, false, grammarAccess.getConjunctionFilterAccess().getCONJUNCTION_KEYWORDTerminalRuleCall_1_1_0()));
+		match_DialectAlias_WSTerminalRuleCall_1_a = new TokenAlias(true, true, grammarAccess.getDialectAliasAccess().getWSTerminalRuleCall_1());
 		match_EtlCardinality_TILDETerminalRuleCall_0_q = new TokenAlias(false, true, grammarAccess.getEtlCardinalityAccess().getTILDETerminalRuleCall_0());
 		match_ExpressionReplacementSlot_SCGTerminalRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getExpressionReplacementSlotAccess().getSCGTerminalRuleCall_3());
 		match_ExpressionTemplate_EQUIVALENT_TOTerminalRuleCall_1_0_0_1_q = new TokenAlias(false, true, grammarAccess.getExpressionTemplateAccess().getEQUIVALENT_TOTerminalRuleCall_1_0_0_1());
@@ -55,14 +59,20 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getCARETRule())
+		if (ruleCall.getRule() == grammarAccess.getACCEPTABLE_IN_KEYWORDRule())
+			return getACCEPTABLE_IN_KEYWORDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getACTIVE_KEYWORDRule())
+			return getACTIVE_KEYWORDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getCARETRule())
 			return getCARETToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getCASE_SIGNIFICANCE_ID_KEYWORDRule())
+			return getCASE_SIGNIFICANCE_ID_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getCOLONRule())
 			return getCOLONToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getCOMMARule())
 			return getCOMMAToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getCONJUNCTIONRule())
-			return getCONJUNCTIONToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getCONJUNCTION_KEYWORDRule())
+			return getCONJUNCTION_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getCURLY_CLOSERule())
 			return getCURLY_CLOSEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getCURLY_OPENRule())
@@ -77,24 +87,32 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getDBL_LT_EMToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDECRule())
 			return getDECToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getDISJUNCTIONRule())
-			return getDISJUNCTIONToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getDIALECTID_KEYWORDRule())
+			return getDIALECTID_KEYWORDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getDIALECT_KEYWORDRule())
+			return getDIALECT_KEYWORDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getDISJUNCTION_KEYWORDRule())
+			return getDISJUNCTION_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDOTRule())
 			return getDOTToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getDOUBLE_CURLY_CLOSERule())
+			return getDOUBLE_CURLY_CLOSEToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getDOUBLE_CURLY_OPENRule())
+			return getDOUBLE_CURLY_OPENToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDOUBLE_SQUARE_CLOSERule())
 			return getDOUBLE_SQUARE_CLOSEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDOUBLE_SQUARE_OPENRule())
 			return getDOUBLE_SQUARE_OPENToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getEFFECTIVE_TIME_KEYWORDRule())
+			return getEFFECTIVE_TIME_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getEQUALRule())
 			return getEQUALToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getEQUIVALENT_TORule())
 			return getEQUIVALENT_TOToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getEXCLUSIONRule())
-			return getEXCLUSIONToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getEXCLUSION_KEYWORDRule())
+			return getEXCLUSION_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getGTRule())
 			return getGTToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getGTERule())
-			return getGTEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getGT_EMRule())
 			return getGT_EMToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getHASHRule())
@@ -103,16 +121,20 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getIDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getINTRule())
 			return getINTToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getLANGUAGE_KEYWORDRule())
+			return getLANGUAGE_KEYWORDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getLANGUAGE_REFSET_ID_KEYWORDRule())
+			return getLANGUAGE_REFSET_ID_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLTRule())
 			return getLTToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getLTERule())
-			return getLTEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLT_EMRule())
 			return getLT_EMToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getNOT_EQUALRule())
-			return getNOT_EQUALToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getMODULEID_KEYWORDRule())
+			return getMODULEID_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getPLUSRule())
 			return getPLUSToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getPREFERRED_IN_KEYWORDRule())
+			return getPREFERRED_IN_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getREVERSEDRule())
 			return getREVERSEDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getROUND_CLOSERule())
@@ -121,6 +143,8 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getROUND_OPENToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSCGRule())
 			return getSCGToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getSEMANTIC_TAG_KEYWORDRule())
+			return getSEMANTIC_TAG_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSQUARE_CLOSERule())
 			return getSQUARE_CLOSEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSQUARE_OPENRule())
@@ -129,15 +153,43 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getSTRToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSUBTYPE_OFRule())
 			return getSUBTYPE_OFToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getTERM_KEYWORDRule())
+			return getTERM_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getTILDERule())
 			return getTILDEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getTORule())
 			return getTOToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getTOKRule())
 			return getTOKToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getTYPEID_KEYWORDRule())
+			return getTYPEID_KEYWORDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getTYPE_KEYWORDRule())
+			return getTYPE_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getWILDCARDRule())
 			return getWILDCARDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getWSRule())
+			return getWSToken(semanticObject, ruleCall, node);
 		return "";
+	}
+	
+	/**
+	 * terminal ACCEPTABLE_IN_KEYWORD: 
+	 * 	'acceptableIn' | ('A'|'a')('C'|'c')('C'|'c')('E'|'e')('P'|'p')('T'|'t')('A'|'a')('B'|'b')('L'|'l')('E'|'e')('I'|'i')('N'|'n');
+	 */
+	protected String getACCEPTABLE_IN_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "acceptableIn";
+	}
+	
+	/**
+	 * terminal ACTIVE_KEYWORD: 
+	 * 	'active' | ('A'|'a')('C'|'c')('T'|'t')('I'|'i')('V'|'v')('E'|'e');
+	 */
+	protected String getACTIVE_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "active";
 	}
 	
 	/**
@@ -148,6 +200,16 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "^";
+	}
+	
+	/**
+	 * terminal CASE_SIGNIFICANCE_ID_KEYWORD: 
+	 * 	'caseSignificanceId' | ('C'|'c')('A'|'a')('S'|'s')('E'|'e')('S'|'s')('I'|'i')('G'|'g')('N'|'n')('I'|'i')('F'|'f')('I'|'i')('C'|'c')('A'|'a')('N'|'n')('C'|'c')('E'|'e')('I'|'i')('D'|'d');
+	 */
+	protected String getCASE_SIGNIFICANCE_ID_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "caseSignificanceId";
 	}
 	
 	/**
@@ -171,13 +233,13 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal CONJUNCTION:
-	 * 	('a' | 'A') ('n' | 'N') ('d' | 'D');
+	 * terminal CONJUNCTION_KEYWORD: 
+	 * 	'AND' | ('A'|'a')('N'|'n')('D'|'d');
 	 */
-	protected String getCONJUNCTIONToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getCONJUNCTION_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return "and";
+		return "AND";
 	}
 	
 	/**
@@ -251,13 +313,33 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal DISJUNCTION:
-	 * 	('o' | 'O') ('r' | 'R');
+	 * terminal DIALECTID_KEYWORD: 
+	 * 	'dialectId' | ('D'|'d')('I'|'i')('A'|'a')('L'|'l')('E'|'e')('C'|'c')('T'|'t')('I'|'i')('D'|'d');
 	 */
-	protected String getDISJUNCTIONToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getDIALECTID_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return "or";
+		return "dialectId";
+	}
+	
+	/**
+	 * terminal DIALECT_KEYWORD: 
+	 * 	'dialect' | ('D'|'d')('I'|'i')('A'|'a')('L'|'l')('E'|'e')('C'|'c')('T'|'t');
+	 */
+	protected String getDIALECT_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "dialect";
+	}
+	
+	/**
+	 * terminal DISJUNCTION_KEYWORD: 
+	 * 	'OR' | ('O'|'o')('R'|'r');
+	 */
+	protected String getDISJUNCTION_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "OR";
 	}
 	
 	/**
@@ -268,6 +350,26 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return ".";
+	}
+	
+	/**
+	 * terminal DOUBLE_CURLY_CLOSE:
+	 * 	'}}';
+	 */
+	protected String getDOUBLE_CURLY_CLOSEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "}}";
+	}
+	
+	/**
+	 * terminal DOUBLE_CURLY_OPEN:
+	 * 	'{{';
+	 */
+	protected String getDOUBLE_CURLY_OPENToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "{{";
 	}
 	
 	/**
@@ -291,6 +393,16 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
+	 * terminal EFFECTIVE_TIME_KEYWORD: 
+	 * 	'effectiveTime' | ('E'|'e')('F'|'f')('F'|'f')('E'|'e')('C'|'c')('T'|'t')('I'|'i')('V'|'v')('E'|'e')('T'|'t')('I'|'i')('M'|'m')('E'|'e');
+	 */
+	protected String getEFFECTIVE_TIME_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "effectiveTime";
+	}
+	
+	/**
 	 * terminal EQUAL:
 	 * 	'=';
 	 */
@@ -311,13 +423,13 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal EXCLUSION:
-	 * 	('m' | 'M') ('i' | 'I') ('n' | 'N') ('u' | 'U') ('s' | 'S');
+	 * terminal EXCLUSION_KEYWORD:
+	 * 	'MINUS' | ('M'|'m')('I'|'i')('N'|'n')('U'|'u')('S'|'s');
 	 */
-	protected String getEXCLUSIONToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getEXCLUSION_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return "minus";
+		return "MINUS";
 	}
 	
 	/**
@@ -328,16 +440,6 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return ">";
-	}
-	
-	/**
-	 * terminal GTE:
-	 * 	'>=';
-	 */
-	protected String getGTEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return ">=";
 	}
 	
 	/**
@@ -381,6 +483,26 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
+	 * terminal LANGUAGE_KEYWORD: 
+	 * 	'language' | ('L'|'l')('A'|'a')('N'|'n')('G'|'g')('U'|'u')('A'|'a')('G'|'g')('E'|'e');
+	 */
+	protected String getLANGUAGE_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "language";
+	}
+	
+	/**
+	 * terminal LANGUAGE_REFSET_ID_KEYWORD: 
+	 * 	'languageRefsetId' | ('L'|'l')('A'|'a')('N'|'n')('G'|'g')('U'|'u')('A'|'a')('G'|'g')('E'|'e')('R'|'r')('E'|'e')('F'|'f')('S'|'s')('E'|'e')('T'|'t')('I'|'i')('D'|'d');
+	 */
+	protected String getLANGUAGE_REFSET_ID_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "languageRefsetId";
+	}
+	
+	/**
 	 * terminal LT:
 	 * 	'<';
 	 */
@@ -388,16 +510,6 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "<";
-	}
-	
-	/**
-	 * terminal LTE:
-	 * 	'<=';
-	 */
-	protected String getLTEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "<=";
 	}
 	
 	/**
@@ -411,13 +523,13 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal NOT_EQUAL:
-	 * 	'!=';
+	 * terminal MODULEID_KEYWORD: 
+	 * 	'moduleId' | ('M'|'m')('O'|'o')('D'|'d')('U'|'u')('L'|'l')('E'|'e')('I'|'i')('D'|'d');
 	 */
-	protected String getNOT_EQUALToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getMODULEID_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return "!=";
+		return "moduleId";
 	}
 	
 	/**
@@ -428,6 +540,16 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "+";
+	}
+	
+	/**
+	 * terminal PREFERRED_IN_KEYWORD: 
+	 * 	'preferredIn' | ('P'|'p')('R'|'r')('E'|'e')('F'|'f')('E'|'e')('R'|'r')('R'|'r')('E'|'e')('D'|'d')('I'|'i')('N'|'n');
+	 */
+	protected String getPREFERRED_IN_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "preferredIn";
 	}
 	
 	/**
@@ -471,6 +593,16 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
+	 * terminal SEMANTIC_TAG_KEYWORD: 
+	 * 	'semanticTag' | ('S'|'s')('E'|'e')('M'|'m')('A'|'a')('N'|'n')('T'|'t')('I'|'i')('C'|'c')('T'|'t')('A'|'a')('G'|'g');
+	 */
+	protected String getSEMANTIC_TAG_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "semanticTag";
+	}
+	
+	/**
 	 * terminal SQUARE_CLOSE:
 	 * 	']';
 	 */
@@ -511,6 +643,16 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
+	 * terminal TERM_KEYWORD: 
+	 * 	'term' | ('T'|'t')('E'|'e')('R'|'r')('M'|'m');
+	 */
+	protected String getTERM_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "term";
+	}
+	
+	/**
 	 * terminal TILDE:
 	 * 	'~';
 	 */
@@ -541,6 +683,26 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
+	 * terminal TYPEID_KEYWORD:
+	 * 	'typeId' | ('T'|'t')('Y'|'y')('P'|'p')('E'|'e')('I'|'i')('D'|'d');
+	 */
+	protected String getTYPEID_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "typeId";
+	}
+	
+	/**
+	 * terminal TYPE_KEYWORD:
+	 * 	'type' | ('T'|'t')('Y'|'y')('P'|'p')('E'|'e');
+	 */
+	protected String getTYPE_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "type";
+	}
+	
+	/**
 	 * terminal WILDCARD:
 	 * 	'*';
 	 */
@@ -550,18 +712,32 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 		return "*";
 	}
 	
+	/**
+	 * terminal WS:
+	 * 	(' ' | '\t' | '\n' | '\r');
+	 */
+	protected String getWSToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return " ";
+	}
+	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
 		if (transition.getAmbiguousSyntaxes().isEmpty()) return;
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0.equals(syntax))
-				emit_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0.equals(syntax))
-				emit_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTIONTerminalRuleCall_1_0_1_0.equals(syntax))
-				emit_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTIONTerminalRuleCall_1_0_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0.equals(syntax))
+				emit_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0.equals(syntax))
+				emit_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0.equals(syntax))
+				emit_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ConjunctionFilter_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0.equals(syntax))
+				emit_ConjunctionFilter_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_DialectAlias_WSTerminalRuleCall_1_a.equals(syntax))
+				emit_DialectAlias_WSTerminalRuleCall_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EtlCardinality_TILDETerminalRuleCall_0_q.equals(syntax))
 				emit_EtlCardinality_TILDETerminalRuleCall_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ExpressionReplacementSlot_SCGTerminalRuleCall_3_q.equals(syntax))
@@ -576,34 +752,57 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	/**
 	 * Ambiguous syntax:
-	 *     CONJUNCTION | COMMA
+	 *     CONJUNCTION_KEYWORD | COMMA
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     {AndRefinement.left=} (ambiguity) right=SubAttributeSet
 	 */
-	protected void emit_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * Ambiguous syntax:
-	 *     CONJUNCTION | COMMA
+	 *     CONJUNCTION_KEYWORD | COMMA
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     {AndExpressionConstraint.left=} (ambiguity) right=ExclusionExpressionConstraint
 	 */
-	protected void emit_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTIONTerminalRuleCall_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * Ambiguous syntax:
-	 *     CONJUNCTION | COMMA
+	 *     CONJUNCTION_KEYWORD | COMMA
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     {AndRefinement.left=} (ambiguity) right=SubRefinement
 	 */
-	protected void emit_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTIONTerminalRuleCall_1_0_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     CONJUNCTION_KEYWORD | COMMA
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     {ConjunctionFilter.left=} (ambiguity) right=PropertyFilter
+	 */
+	protected void emit_ConjunctionFilter_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     WS*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     alias=DialectAliasValue (ambiguity) (rule end)
+	 *     alias=DialectAliasValue (ambiguity) acceptability=Acceptability
+	 */
+	protected void emit_DialectAlias_WSTerminalRuleCall_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
