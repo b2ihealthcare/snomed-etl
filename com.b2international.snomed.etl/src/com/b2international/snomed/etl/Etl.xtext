@@ -69,11 +69,11 @@ ConceptReplacementSlot:
 	ConceptIdReplacementSlot | ExpressionReplacementSlot;
 
 ConceptReference:
-	(slot=ConceptReplacementSlot) | (id=SnomedIdentifier (term=TERM_STRING)?);
+	(slot=ConceptReplacementSlot) | (id=SnomedIdentifier (term=PIPE_DELIMITED_STRING)?);
 
 SlotToken:
 	EQUIVALENT_TO | SUBTYPE_OF |
-	COMMA | CONJUNCTION | DISJUNCTION | EXCLUSION | REVERSED | CARET |
+	COMMA | CONJUNCTION_KEYWORD | DISJUNCTION_KEYWORD | EXCLUSION_KEYWORD | REVERSED | CARET |
 	LT | LTE | DBL_LT | LT_EM |
 	GT | GTE | DBL_GT | GT_EM |
 	EQUAL | NOT_EQUAL;
