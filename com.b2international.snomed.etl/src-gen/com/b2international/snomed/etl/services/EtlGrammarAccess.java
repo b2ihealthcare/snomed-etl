@@ -2457,7 +2457,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	
 	//// no special treatment for the term filter STRING, we allow everything for any lexical search type
 	//TypedTermFilter:
-	//	op=NON_NUMERIC_OPERATOR (lexicalSearchType=LEXICAL_SEARCH_TYPE COLON)? term=STRING;
+	//	op=NON_NUMERIC_OPERATOR clause=TypedTermFilterClause;
 	public EclGrammarAccess.TypedTermFilterElements getTypedTermFilterAccess() {
 		return gaEcl.getTypedTermFilterAccess();
 	}
@@ -2467,13 +2467,35 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//TypedTermFilterSet:
-	//	op=NON_NUMERIC_OPERATOR ROUND_OPEN terms+=TypedTermFilter+ ROUND_CLOSE;
+	//	op=NON_NUMERIC_OPERATOR ROUND_OPEN clauses+=TypedTermFilterClause+ ROUND_CLOSE;
 	public EclGrammarAccess.TypedTermFilterSetElements getTypedTermFilterSetAccess() {
 		return gaEcl.getTypedTermFilterSetAccess();
 	}
 	
 	public ParserRule getTypedTermFilterSetRule() {
 		return getTypedTermFilterSetAccess().getRule();
+	}
+	
+	//TypedTermFilterClause:
+	//	(lexicalSearchType=LEXICAL_SEARCH_TYPE COLON)? term=STRING
+	//	| lexicalSearchType=REGEX_KEYWORD COLON term=RegularExpression;
+	public EclGrammarAccess.TypedTermFilterClauseElements getTypedTermFilterClauseAccess() {
+		return gaEcl.getTypedTermFilterClauseAccess();
+	}
+	
+	public ParserRule getTypedTermFilterClauseRule() {
+		return getTypedTermFilterClauseAccess().getRule();
+	}
+	
+	//// Regular expression syntax checking is left to the value converter implementation
+	//RegularExpression:
+	//	STRING;
+	public EclGrammarAccess.RegularExpressionElements getRegularExpressionAccess() {
+		return gaEcl.getRegularExpressionAccess();
+	}
+	
+	public ParserRule getRegularExpressionRule() {
+		return getRegularExpressionAccess().getRule();
 	}
 	
 	//LanguageFilter:
@@ -2802,8 +2824,8 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//:
 	//	MATCH_KEYWORD
 	//	| WILD_KEYWORD
-	//	// Lexical search type extensions
-	//	| REGEX_KEYWORD
+	//	// Lexical search type extensions 
+	//	// REGEX_KEYWORD is used directly in the parser rule, as it requires a special term argument
 	//	| EXACT_KEYWORD;
 	public EclGrammarAccess.LEXICAL_SEARCH_TYPEElements getLEXICAL_SEARCH_TYPEAccess() {
 		return gaEcl.getLEXICAL_SEARCH_TYPEAccess();

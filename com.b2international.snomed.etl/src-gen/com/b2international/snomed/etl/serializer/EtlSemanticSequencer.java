@@ -68,6 +68,7 @@ import com.b2international.snomed.ecl.ecl.StringValueComparison;
 import com.b2international.snomed.ecl.ecl.TypeIdFilter;
 import com.b2international.snomed.ecl.ecl.TypeTokenFilter;
 import com.b2international.snomed.ecl.ecl.TypedTermFilter;
+import com.b2international.snomed.ecl.ecl.TypedTermFilterClause;
 import com.b2international.snomed.ecl.ecl.TypedTermFilterSet;
 import com.b2international.snomed.ecl.serializer.EclSemanticSequencer;
 import com.b2international.snomed.etl.etl.Attribute;
@@ -323,6 +324,9 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 				return; 
 			case EclPackage.TYPED_TERM_FILTER:
 				sequence_TypedTermFilter(context, (TypedTermFilter) semanticObject); 
+				return; 
+			case EclPackage.TYPED_TERM_FILTER_CLAUSE:
+				sequence_TypedTermFilterClause(context, (TypedTermFilterClause) semanticObject); 
 				return; 
 			case EclPackage.TYPED_TERM_FILTER_SET:
 				sequence_TypedTermFilterSet(context, (TypedTermFilterSet) semanticObject); 
