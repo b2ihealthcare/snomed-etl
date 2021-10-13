@@ -33,6 +33,8 @@ import com.b2international.snomed.ecl.ecl.ChildOf;
 import com.b2international.snomed.ecl.ecl.ChildOrSelfOf;
 import com.b2international.snomed.ecl.ecl.ConjunctionFilter;
 import com.b2international.snomed.ecl.ecl.DecimalValueComparison;
+import com.b2international.snomed.ecl.ecl.DefinitionStatusIdFilter;
+import com.b2international.snomed.ecl.ecl.DefinitionStatusTokenFilter;
 import com.b2international.snomed.ecl.ecl.DescendantOf;
 import com.b2international.snomed.ecl.ecl.DescendantOrSelfOf;
 import com.b2international.snomed.ecl.ecl.Dialect;
@@ -47,6 +49,7 @@ import com.b2international.snomed.ecl.ecl.EclConceptReferenceSet;
 import com.b2international.snomed.ecl.ecl.EclPackage;
 import com.b2international.snomed.ecl.ecl.EffectiveTimeFilter;
 import com.b2international.snomed.ecl.ecl.ExclusionExpressionConstraint;
+import com.b2international.snomed.ecl.ecl.FilterConstraint;
 import com.b2international.snomed.ecl.ecl.FilteredExpressionConstraint;
 import com.b2international.snomed.ecl.ecl.IntegerValueComparison;
 import com.b2international.snomed.ecl.ecl.LanguageFilter;
@@ -193,6 +196,12 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 			case EclPackage.DECIMAL_VALUE_COMPARISON:
 				sequence_DecimalValueComparison(context, (DecimalValueComparison) semanticObject); 
 				return; 
+			case EclPackage.DEFINITION_STATUS_ID_FILTER:
+				sequence_DefinitionStatusIdFilter(context, (DefinitionStatusIdFilter) semanticObject); 
+				return; 
+			case EclPackage.DEFINITION_STATUS_TOKEN_FILTER:
+				sequence_DefinitionStatusTokenFilter(context, (DefinitionStatusTokenFilter) semanticObject); 
+				return; 
 			case EclPackage.DESCENDANT_OF:
 				sequence_DescendantOf(context, (DescendantOf) semanticObject); 
 				return; 
@@ -231,6 +240,9 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 				return; 
 			case EclPackage.EXCLUSION_EXPRESSION_CONSTRAINT:
 				sequence_ExclusionExpressionConstraint(context, (ExclusionExpressionConstraint) semanticObject); 
+				return; 
+			case EclPackage.FILTER_CONSTRAINT:
+				sequence_FilterConstraint(context, (FilterConstraint) semanticObject); 
 				return; 
 			case EclPackage.FILTERED_EXPRESSION_CONSTRAINT:
 				sequence_FilteredExpressionConstraint(context, (FilteredExpressionConstraint) semanticObject); 

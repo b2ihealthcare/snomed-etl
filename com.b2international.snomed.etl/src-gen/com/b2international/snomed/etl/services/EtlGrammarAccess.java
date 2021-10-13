@@ -2369,8 +2369,9 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//// filters
+	//// Single-letter filter domains are new in ECL 1.6
 	//FilterConstraint:
-	//	DOUBLE_CURLY_OPEN Filter DOUBLE_CURLY_CLOSE;
+	//	DOUBLE_CURLY_OPEN domain=SHORT_DOMAIN? filter=Filter DOUBLE_CURLY_CLOSE;
 	public EclGrammarAccess.FilterConstraintElements getFilterConstraintAccess() {
 		return gaEcl.getFilterConstraintAccess();
 	}
@@ -2389,7 +2390,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getFilterAccess().getRule();
 	}
 	
-	//// Conjunction (OR) of filters is an extension to ECL 1.5
+	//// Conjunction (OR) of filters is an extension to ECL 1.6
 	//DisjunctionFilter Filter:
 	//	ConjunctionFilter ({DisjunctionFilter.left=current} DISJUNCTION_KEYWORD right=ConjunctionFilter)*;
 	public EclGrammarAccess.DisjunctionFilterElements getDisjunctionFilterAccess() {
@@ -2400,7 +2401,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getDisjunctionFilterAccess().getRule();
 	}
 	
-	//// Using the "AND" keyword for disjunctions is an extension to ECL 1.5
+	//// Using the "AND" keyword for filter disjunction is an extension to ECL 1.6
 	//ConjunctionFilter Filter:
 	//	PropertyFilter ({ConjunctionFilter.left=current} (CONJUNCTION_KEYWORD | COMMA) right=PropertyFilter)*;
 	public EclGrammarAccess.ConjunctionFilterElements getConjunctionFilterAccess() {
@@ -2426,14 +2427,18 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//	| LanguageFilter
 	//	| TypeFilter
 	//	| DialectFilter
-	//	// QL 0.1 filters (ECL extensions)	 
+	//	// Concept filters in ECL 1.6
+	//	| DefinitionStatusFilter
+	//	// Concept filters in ECL 1.6, component filters in QL 0.1 (extension)
+	//	| ModuleFilter
+	//	| EffectiveTimeFilter
 	//	| ActiveFilter
+	//	// Component filters in QL 0.1 (extension)
+	//	| SemanticTagFilter
+	//	// Description filters in QL 0.1 (extension)
 	//	| PreferredInFilter
 	//	| AcceptableInFilter
 	//	| LanguageRefSetFilter
-	//	| ModuleFilter
-	//	| SemanticTagFilter
-	//	| EffectiveTimeFilter
 	//	| CaseSignificanceFilter
 	//	// Allows grouping filters for boolean operators
 	//	| NestedFilter;
@@ -2520,7 +2525,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//TypeIdFilter:
-	//	TYPEID_KEYWORD op=NON_NUMERIC_OPERATOR type=(EclConceptReference | EclConceptReferenceSet);
+	//	TYPEID_KEYWORD op=NON_NUMERIC_OPERATOR type=FilterValue;
 	public EclGrammarAccess.TypeIdFilterElements getTypeIdFilterAccess() {
 		return gaEcl.getTypeIdFilterAccess();
 	}
@@ -2529,7 +2534,8 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getTypeIdFilterAccess().getRule();
 	}
 	
-	//// Any unquoted string is allowed as a type token here, validator will restrict it to the available set
+	//// Any unquoted string is allowed as a type token here, validator will restrict it 
+	//// to the available set ("fsn"/"syn"/"def", case insensitive)
 	//TypeTokenFilter:
 	//	TYPE_KEYWORD op=NON_NUMERIC_OPERATOR (tokens+=UnquotedString | ROUND_OPEN tokens+=UnquotedString+ ROUND_CLOSE);
 	public EclGrammarAccess.TypeTokenFilterElements getTypeTokenFilterAccess() {
@@ -2570,8 +2576,9 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getDialectAliasFilterAccess().getRule();
 	}
 	
+	//// We will allow filtered expressions within the round parentheses, not simple concept references (extension to ECL 1.6)
 	//Dialect:
-	//	languageRefSetId=EclConceptReference acceptability=Acceptability?;
+	//	languageRefSetId=FilteredExpressionConstraint acceptability=Acceptability?;
 	public EclGrammarAccess.DialectElements getDialectAccess() {
 		return gaEcl.getDialectAccess();
 	}
@@ -2611,6 +2618,8 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getAcceptabilityIdSetAccess().getRule();
 	}
 	
+	//// Any unquoted string is allowed as an acceptability token here, validator will restrict it 
+	//// to the available set ("accept"/"prefer", case insensitive)
 	//AcceptabilityTokenSet:
 	//	ROUND_OPEN acceptabilities+=UnquotedString+ ROUND_CLOSE;
 	public EclGrammarAccess.AcceptabilityTokenSetElements getAcceptabilityTokenSetAccess() {
@@ -2621,18 +2630,41 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getAcceptabilityTokenSetAccess().getRule();
 	}
 	
-	//ActiveFilter:
-	//	(domain=DOMAIN DOT)? ACTIVE_KEYWORD EQUAL active=Boolean;
-	public EclGrammarAccess.ActiveFilterElements getActiveFilterAccess() {
-		return gaEcl.getActiveFilterAccess();
+	//DefinitionStatusFilter:
+	//	DefinitionStatusIdFilter | DefinitionStatusTokenFilter;
+	public EclGrammarAccess.DefinitionStatusFilterElements getDefinitionStatusFilterAccess() {
+		return gaEcl.getDefinitionStatusFilterAccess();
 	}
 	
-	public ParserRule getActiveFilterRule() {
-		return getActiveFilterAccess().getRule();
+	public ParserRule getDefinitionStatusFilterRule() {
+		return getDefinitionStatusFilterAccess().getRule();
+	}
+	
+	//DefinitionStatusIdFilter:
+	//	DEFINITION_STATUS_ID_KEYWORD op=NON_NUMERIC_OPERATOR definitionStatus=FilterValue;
+	public EclGrammarAccess.DefinitionStatusIdFilterElements getDefinitionStatusIdFilterAccess() {
+		return gaEcl.getDefinitionStatusIdFilterAccess();
+	}
+	
+	public ParserRule getDefinitionStatusIdFilterRule() {
+		return getDefinitionStatusIdFilterAccess().getRule();
+	}
+	
+	//// Any unquoted string is allowed as a definition status token here, validator will restrict it 
+	//// to the available set ("primitive"/"defined", case insensitive)
+	//DefinitionStatusTokenFilter:
+	//	DEFINITION_STATUS_TOKEN_KEYWORD op=NON_NUMERIC_OPERATOR (definitionStatusTokens+=UnquotedString | ROUND_OPEN
+	//	definitionStatusTokens+=UnquotedString+ ROUND_CLOSE);
+	public EclGrammarAccess.DefinitionStatusTokenFilterElements getDefinitionStatusTokenFilterAccess() {
+		return gaEcl.getDefinitionStatusTokenFilterAccess();
+	}
+	
+	public ParserRule getDefinitionStatusTokenFilterRule() {
+		return getDefinitionStatusTokenFilterAccess().getRule();
 	}
 	
 	//ModuleFilter:
-	//	(domain=DOMAIN DOT)? MODULEID_KEYWORD EQUAL moduleId=ExpressionConstraint;
+	//	MODULEID_KEYWORD EQUAL moduleId=FilterValue;
 	public EclGrammarAccess.ModuleFilterElements getModuleFilterAccess() {
 		return gaEcl.getModuleFilterAccess();
 	}
@@ -2641,18 +2673,12 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getModuleFilterAccess().getRule();
 	}
 	
-	//SemanticTagFilter:
-	//	(domain=DOMAIN DOT)? SEMANTIC_TAG_KEYWORD op=NON_NUMERIC_OPERATOR semanticTag=STRING;
-	public EclGrammarAccess.SemanticTagFilterElements getSemanticTagFilterAccess() {
-		return gaEcl.getSemanticTagFilterAccess();
-	}
-	
-	public ParserRule getSemanticTagFilterRule() {
-		return getSemanticTagFilterAccess().getRule();
-	}
-	
+	//// Any quoted string is allowed as an effective time literal here; accepted values are:
+	//// - "" (unspecified effective time in ECL 1.6)
+	//// - "Unspecified" (unspecified in Snow Owl)
+	//// - "yyyyMMdd" (effective time in short date format)
 	//EffectiveTimeFilter:
-	//	(domain=DOMAIN DOT)? EFFECTIVE_TIME_KEYWORD op=NUMERIC_OPERATOR effectiveTime=STRING;
+	//	EFFECTIVE_TIME_KEYWORD op=NUMERIC_OPERATOR effectiveTime=STRING;
 	public EclGrammarAccess.EffectiveTimeFilterElements getEffectiveTimeFilterAccess() {
 		return gaEcl.getEffectiveTimeFilterAccess();
 	}
@@ -2661,8 +2687,28 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getEffectiveTimeFilterAccess().getRule();
 	}
 	
+	//ActiveFilter:
+	//	ACTIVE_KEYWORD EQUAL active=ActiveBoolean;
+	public EclGrammarAccess.ActiveFilterElements getActiveFilterAccess() {
+		return gaEcl.getActiveFilterAccess();
+	}
+	
+	public ParserRule getActiveFilterRule() {
+		return getActiveFilterAccess().getRule();
+	}
+	
+	//SemanticTagFilter:
+	//	SEMANTIC_TAG_KEYWORD op=NON_NUMERIC_OPERATOR semanticTag=STRING;
+	public EclGrammarAccess.SemanticTagFilterElements getSemanticTagFilterAccess() {
+		return gaEcl.getSemanticTagFilterAccess();
+	}
+	
+	public ParserRule getSemanticTagFilterRule() {
+		return getSemanticTagFilterAccess().getRule();
+	}
+	
 	//PreferredInFilter:
-	//	PREFERRED_IN_KEYWORD EQUAL languageRefSetId=ExpressionConstraint;
+	//	PREFERRED_IN_KEYWORD EQUAL languageRefSetId=FilterValue;
 	public EclGrammarAccess.PreferredInFilterElements getPreferredInFilterAccess() {
 		return gaEcl.getPreferredInFilterAccess();
 	}
@@ -2672,7 +2718,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//AcceptableInFilter:
-	//	ACCEPTABLE_IN_KEYWORD EQUAL languageRefSetId=ExpressionConstraint;
+	//	ACCEPTABLE_IN_KEYWORD EQUAL languageRefSetId=FilterValue;
 	public EclGrammarAccess.AcceptableInFilterElements getAcceptableInFilterAccess() {
 		return gaEcl.getAcceptableInFilterAccess();
 	}
@@ -2682,7 +2728,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//LanguageRefSetFilter:
-	//	LANGUAGE_REFSET_ID_KEYWORD EQUAL languageRefSetId=ExpressionConstraint;
+	//	LANGUAGE_REFSET_ID_KEYWORD EQUAL languageRefSetId=FilterValue;
 	public EclGrammarAccess.LanguageRefSetFilterElements getLanguageRefSetFilterAccess() {
 		return gaEcl.getLanguageRefSetFilterAccess();
 	}
@@ -2692,13 +2738,23 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//CaseSignificanceFilter:
-	//	CASE_SIGNIFICANCE_ID_KEYWORD EQUAL caseSignificanceId=ExpressionConstraint;
+	//	CASE_SIGNIFICANCE_ID_KEYWORD EQUAL caseSignificanceId=FilterValue;
 	public EclGrammarAccess.CaseSignificanceFilterElements getCaseSignificanceFilterAccess() {
 		return gaEcl.getCaseSignificanceFilterAccess();
 	}
 	
 	public ParserRule getCaseSignificanceFilterRule() {
 		return getCaseSignificanceFilterAccess().getRule();
+	}
+	
+	//FilterValue:
+	//	FilteredExpressionConstraint | EclConceptReferenceSet;
+	public EclGrammarAccess.FilterValueElements getFilterValueAccess() {
+		return gaEcl.getFilterValueAccess();
+	}
+	
+	public ParserRule getFilterValueRule() {
+		return getFilterValueAccess().getRule();
 	}
 	
 	///*
@@ -2773,19 +2829,30 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getBooleanAccess().getRule();
 	}
 	
+	//// Value converter and validation checks for allowed integers 0 and 1
+	//ActiveBoolean ecore::EBoolean hidden():
+	//	NonNegativeInteger | Boolean;
+	public EclGrammarAccess.ActiveBooleanElements getActiveBooleanAccess() {
+		return gaEcl.getActiveBooleanAccess();
+	}
+	
+	public ParserRule getActiveBooleanRule() {
+		return getActiveBooleanAccess().getRule();
+	}
+	
 	//// Unquoted strings also need to cover any keywords caught by the lexer, earlier in the process. They are terminated by whitespace.
 	//UnquotedString:
 	//	CASE_SIGNIFICANCE_ID_KEYWORD
+	//	| DEFINITION_STATUS_ID_KEYWORD
+	//	| DEFINITION_STATUS_TOKEN_KEYWORD
 	//	| LANGUAGE_REFSET_ID_KEYWORD
 	//	| EFFECTIVE_TIME_KEYWORD
 	//	| ACCEPTABLE_IN_KEYWORD
-	//	| DESCRIPTION_KEYWORD
 	//	| PREFERRED_IN_KEYWORD
 	//	| SEMANTIC_TAG_KEYWORD
 	//	| DIALECTID_KEYWORD
 	//	| LANGUAGE_KEYWORD
 	//	| MODULEID_KEYWORD
-	//	| CONCEPT_KEYWORD
 	//	| DIALECT_KEYWORD
 	//	| ACTIVE_KEYWORD
 	//	| TYPEID_KEYWORD
@@ -2801,6 +2868,8 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//	| CONJUNCTION_KEYWORD
 	//	| DISJUNCTION_KEYWORD
 	//	| REVERSED
+	//	| DESCRIPTION_SHORT_KEYWORD
+	//	| CONCEPT_SHORT_KEYWORD
 	//	| KEYWORD;
 	public EclGrammarAccess.UnquotedStringElements getUnquotedStringAccess() {
 		return gaEcl.getUnquotedStringAccess();
@@ -2835,15 +2904,16 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getLEXICAL_SEARCH_TYPEAccess().getRule();
 	}
 	
-	//DOMAIN:
-	//	CONCEPT_KEYWORD
-	//	| DESCRIPTION_KEYWORD;
-	public EclGrammarAccess.DOMAINElements getDOMAINAccess() {
-		return gaEcl.getDOMAINAccess();
+	//// Single-letter domains for filterConstraints is an ECL 1.6 feature
+	//SHORT_DOMAIN:
+	//	CONCEPT_SHORT_KEYWORD
+	//	| DESCRIPTION_SHORT_KEYWORD;
+	public EclGrammarAccess.SHORT_DOMAINElements getSHORT_DOMAINAccess() {
+		return gaEcl.getSHORT_DOMAINAccess();
 	}
 	
-	public ParserRule getDOMAINRule() {
-		return getDOMAINAccess().getRule();
+	public ParserRule getSHORT_DOMAINRule() {
+		return getSHORT_DOMAINAccess().getRule();
 	}
 	
 	//NON_NUMERIC_OPERATOR:
@@ -2874,6 +2944,21 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return gaEcl.getCASE_SIGNIFICANCE_ID_KEYWORDRule();
 	}
 	
+	//terminal DEFINITION_STATUS_ID_KEYWORD:
+	//	'definitionStatusId' | ('d' | 'D') ('e' | 'E') ('f' | 'F') ('i' | 'I') ('n' | 'N') ('i' | 'I') ('t' | 'T') ('i' | 'I')
+	//	('o' | 'O') ('n' | 'N') ('s' | 'S') ('t' | 'T') ('a' | 'A') ('t' | 'T') ('u' | 'U') ('s' | 'S') ('i' | 'I') ('d' |
+	//	'D');
+	public TerminalRule getDEFINITION_STATUS_ID_KEYWORDRule() {
+		return gaEcl.getDEFINITION_STATUS_ID_KEYWORDRule();
+	}
+	
+	//terminal DEFINITION_STATUS_TOKEN_KEYWORD:
+	//	'definitionStatus' | ('d' | 'D') ('e' | 'E') ('f' | 'F') ('i' | 'I') ('n' | 'N') ('i' | 'I') ('t' | 'T') ('i' | 'I')
+	//	('o' | 'O') ('n' | 'N') ('s' | 'S') ('t' | 'T') ('a' | 'A') ('t' | 'T') ('u' | 'U') ('s' | 'S');
+	public TerminalRule getDEFINITION_STATUS_TOKEN_KEYWORDRule() {
+		return gaEcl.getDEFINITION_STATUS_TOKEN_KEYWORDRule();
+	}
+	
 	//terminal LANGUAGE_REFSET_ID_KEYWORD:
 	//	'languageRefsetId' | ('L' | 'l') ('A' | 'a') ('N' | 'n') ('G' | 'g') ('U' | 'u') ('A' | 'a') ('G' | 'g') ('E' | 'e')
 	//	('R' | 'r') ('E' | 'e') ('F' | 'f') ('S' | 's') ('E' | 'e') ('T' | 't') ('I' | 'i') ('D' | 'd');
@@ -2893,13 +2978,6 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//	| 'l') ('E' | 'e') ('I' | 'i') ('N' | 'n');
 	public TerminalRule getACCEPTABLE_IN_KEYWORDRule() {
 		return gaEcl.getACCEPTABLE_IN_KEYWORDRule();
-	}
-	
-	//terminal DESCRIPTION_KEYWORD:
-	//	'Description' | ('D' | 'd') ('E' | 'e') ('S' | 's') ('C' | 'c') ('R' | 'r') ('I' | 'i') ('P' | 'p') ('T' | 't') ('I' |
-	//	'i') ('O' | 'o') ('N' | 'n');
-	public TerminalRule getDESCRIPTION_KEYWORDRule() {
-		return gaEcl.getDESCRIPTION_KEYWORDRule();
 	}
 	
 	//terminal PREFERRED_IN_KEYWORD:
@@ -2933,12 +3011,6 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//	'moduleId' | ('M' | 'm') ('O' | 'o') ('D' | 'd') ('U' | 'u') ('L' | 'l') ('E' | 'e') ('I' | 'i') ('D' | 'd');
 	public TerminalRule getMODULEID_KEYWORDRule() {
 		return gaEcl.getMODULEID_KEYWORDRule();
-	}
-	
-	//terminal CONCEPT_KEYWORD:
-	//	'Concept' | ('C' | 'c') ('O' | 'o') ('N' | 'n') ('C' | 'c') ('E' | 'e') ('P' | 'p') ('T' | 't');
-	public TerminalRule getCONCEPT_KEYWORDRule() {
-		return gaEcl.getCONCEPT_KEYWORDRule();
 	}
 	
 	//terminal DIALECT_KEYWORD:
@@ -3029,6 +3101,18 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//	'R';
 	public TerminalRule getREVERSEDRule() {
 		return gaEcl.getREVERSEDRule();
+	}
+	
+	//terminal DESCRIPTION_SHORT_KEYWORD:
+	//	'D' | 'd';
+	public TerminalRule getDESCRIPTION_SHORT_KEYWORDRule() {
+		return gaEcl.getDESCRIPTION_SHORT_KEYWORDRule();
+	}
+	
+	//terminal CONCEPT_SHORT_KEYWORD:
+	//	'C' | 'c';
+	public TerminalRule getCONCEPT_SHORT_KEYWORDRule() {
+		return gaEcl.getCONCEPT_SHORT_KEYWORDRule();
 	}
 	
 	//terminal KEYWORD:

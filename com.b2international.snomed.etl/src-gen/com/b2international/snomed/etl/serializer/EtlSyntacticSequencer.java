@@ -87,6 +87,10 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getDBL_LT_EMToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDECRule())
 			return getDECToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getDEFINITION_STATUS_ID_KEYWORDRule())
+			return getDEFINITION_STATUS_ID_KEYWORDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getDEFINITION_STATUS_TOKEN_KEYWORDRule())
+			return getDEFINITION_STATUS_TOKEN_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDIALECTID_KEYWORDRule())
 			return getDIALECTID_KEYWORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDIALECT_KEYWORDRule())
@@ -310,6 +314,26 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "dec";
+	}
+	
+	/**
+	 * terminal DEFINITION_STATUS_ID_KEYWORD:
+	 * 	'definitionStatusId'| ('d'|'D')('e'|'E')('f'|'F')('i'|'I')('n'|'N')('i'|'I')('t'|'T')('i'|'I')('o'|'O')('n'|'N')('s'|'S')('t'|'T')('a'|'A')('t'|'T')('u'|'U')('s'|'S')('i'|'I')('d'|'D');
+	 */
+	protected String getDEFINITION_STATUS_ID_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "definitionStatusId";
+	}
+	
+	/**
+	 * terminal DEFINITION_STATUS_TOKEN_KEYWORD:
+	 * 	'definitionStatus'| ('d'|'D')('e'|'E')('f'|'F')('i'|'I')('n'|'N')('i'|'I')('t'|'T')('i'|'I')('o'|'O')('n'|'N')('s'|'S')('t'|'T')('a'|'A')('t'|'T')('u'|'U')('s'|'S');
+	 */
+	protected String getDEFINITION_STATUS_TOKEN_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "definitionStatus";
 	}
 	
 	/**
