@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021 B2i Healthcare Pte Ltd, http://b2i.sg
+ * Copyright 2020-2022 B2i Healthcare Pte Ltd, http://b2i.sg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,6 +49,8 @@ RULE_SUBTYPE_OF : '<<<';
 
 RULE_SLOTNAME_STRING : RULE_AT (RULE_STRING|~(('\\'|'"'|'\''|RULE_WS|RULE_AT|RULE_SQUARE_OPEN|RULE_SQUARE_CLOSE))*);
 
+RULE_HISTORY_KEYWORD : ('HISTORY'|('h'|'H') ('i'|'I') ('s'|'S') ('t'|'T') ('o'|'O') ('r'|'R') ('y'|'Y'));
+
 RULE_CASE_SIGNIFICANCE_ID_KEYWORD : ('caseSignificanceId'|('C'|'c') ('A'|'a') ('S'|'s') ('E'|'e') ('S'|'s') ('I'|'i') ('G'|'g') ('N'|'n') ('I'|'i') ('F'|'f') ('I'|'i') ('C'|'c') ('A'|'a') ('N'|'n') ('C'|'c') ('E'|'e') ('I'|'i') ('D'|'d'));
 
 RULE_DEFINITION_STATUS_ID_KEYWORD : ('definitionStatusId'|('d'|'D') ('e'|'E') ('f'|'F') ('i'|'I') ('n'|'N') ('i'|'I') ('t'|'T') ('i'|'I') ('o'|'O') ('n'|'N') ('s'|'S') ('t'|'T') ('a'|'A') ('t'|'T') ('u'|'U') ('s'|'S') ('i'|'I') ('d'|'D'));
@@ -95,17 +97,27 @@ RULE_TYPE_KEYWORD : ('type'|('T'|'t') ('Y'|'y') ('P'|'p') ('E'|'e'));
 
 RULE_WILD_KEYWORD : ('wild'|('W'|'w') ('I'|'i') ('L'|'l') ('D'|'d'));
 
+RULE_MIN_KEYWORD : ('MIN'|('M'|'m') ('I'|'i') ('N'|'n'));
+
+RULE_MOD_KEYWORD : ('MOD'|('M'|'m') ('O'|'o') ('D'|'d'));
+
+RULE_MAX_KEYWORD : ('MAX'|('M'|'m') ('A'|'a') ('X'|'x'));
+
 RULE_CONJUNCTION_KEYWORD : ('AND'|('A'|'a') ('N'|'n') ('D'|'d'));
 
 RULE_DISJUNCTION_KEYWORD : ('OR'|('O'|'o') ('R'|'r'));
 
 RULE_REVERSED : 'R';
 
+RULE_MEMBER_SHORT_KEYWORD : ('M'|'m');
+
 RULE_DESCRIPTION_SHORT_KEYWORD : ('D'|'d');
 
 RULE_CONCEPT_SHORT_KEYWORD : ('C'|'c');
 
-RULE_KEYWORD : ('a'..'z'|'A'..'Z')+;
+RULE_ALPHA : ('a'..'z'|'A'..'Z');
+
+RULE_KEYWORD : RULE_ALPHA RULE_ALPHA+;
 
 RULE_DBL_LT_EM : '<<!';
 
@@ -135,9 +147,7 @@ RULE_TO : '..';
 
 RULE_COMMA : ',';
 
-RULE_DIGIT_ZERO : '0';
-
-RULE_DIGIT_NONZERO : '1'..'9';
+RULE_DIGIT : '0'..'9';
 
 RULE_COLON : ':';
 
@@ -156,6 +166,8 @@ RULE_SQUARE_CLOSE : ']';
 RULE_PLUS : '+';
 
 RULE_DASH : '-';
+
+RULE_UNDERSCORE : '_';
 
 RULE_CARET : '^';
 

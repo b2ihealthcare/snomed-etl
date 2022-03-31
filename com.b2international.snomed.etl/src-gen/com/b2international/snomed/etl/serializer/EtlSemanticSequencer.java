@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021 B2i Healthcare Pte Ltd, http://b2i.sg
+ * Copyright 2020-2022 B2i Healthcare Pte Ltd, http://b2i.sg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,7 @@
  */
 package com.b2international.snomed.etl.serializer;
 
-import com.b2international.snomed.ecl.ecl.AcceptabilityIdSet;
-import com.b2international.snomed.ecl.ecl.AcceptabilityTokenSet;
+import com.b2international.snomed.ecl.ecl.Acceptability;
 import com.b2international.snomed.ecl.ecl.AcceptableInFilter;
 import com.b2international.snomed.ecl.ecl.ActiveFilter;
 import com.b2international.snomed.ecl.ecl.AncestorOf;
@@ -51,9 +50,12 @@ import com.b2international.snomed.ecl.ecl.EffectiveTimeFilter;
 import com.b2international.snomed.ecl.ecl.ExclusionExpressionConstraint;
 import com.b2international.snomed.ecl.ecl.FilterConstraint;
 import com.b2international.snomed.ecl.ecl.FilteredExpressionConstraint;
+import com.b2international.snomed.ecl.ecl.HistoryProfile;
+import com.b2international.snomed.ecl.ecl.HistorySupplement;
 import com.b2international.snomed.ecl.ecl.IntegerValueComparison;
 import com.b2international.snomed.ecl.ecl.LanguageFilter;
 import com.b2international.snomed.ecl.ecl.LanguageRefSetFilter;
+import com.b2international.snomed.ecl.ecl.MemberFieldFilter;
 import com.b2international.snomed.ecl.ecl.MemberOf;
 import com.b2international.snomed.ecl.ecl.ModuleFilter;
 import com.b2international.snomed.ecl.ecl.NestedExpression;
@@ -68,11 +70,13 @@ import com.b2international.snomed.ecl.ecl.RefinedExpressionConstraint;
 import com.b2international.snomed.ecl.ecl.Script;
 import com.b2international.snomed.ecl.ecl.SemanticTagFilter;
 import com.b2international.snomed.ecl.ecl.StringValueComparison;
+import com.b2international.snomed.ecl.ecl.SupplementExpressionConstraint;
+import com.b2international.snomed.ecl.ecl.TermFilter;
 import com.b2international.snomed.ecl.ecl.TypeIdFilter;
 import com.b2international.snomed.ecl.ecl.TypeTokenFilter;
-import com.b2international.snomed.ecl.ecl.TypedTermFilter;
-import com.b2international.snomed.ecl.ecl.TypedTermFilterClause;
-import com.b2international.snomed.ecl.ecl.TypedTermFilterSet;
+import com.b2international.snomed.ecl.ecl.TypedSearchTerm;
+import com.b2international.snomed.ecl.ecl.TypedSearchTermClause;
+import com.b2international.snomed.ecl.ecl.TypedSearchTermSet;
 import com.b2international.snomed.ecl.serializer.EclSemanticSequencer;
 import com.b2international.snomed.etl.etl.Attribute;
 import com.b2international.snomed.etl.etl.AttributeGroup;
@@ -127,11 +131,8 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == EclPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case EclPackage.ACCEPTABILITY_ID_SET:
-				sequence_AcceptabilityIdSet(context, (AcceptabilityIdSet) semanticObject); 
-				return; 
-			case EclPackage.ACCEPTABILITY_TOKEN_SET:
-				sequence_AcceptabilityTokenSet(context, (AcceptabilityTokenSet) semanticObject); 
+			case EclPackage.ACCEPTABILITY:
+				sequence_Acceptability(context, (Acceptability) semanticObject); 
 				return; 
 			case EclPackage.ACCEPTABLE_IN_FILTER:
 				sequence_AcceptableInFilter(context, (AcceptableInFilter) semanticObject); 
@@ -247,6 +248,12 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 			case EclPackage.FILTERED_EXPRESSION_CONSTRAINT:
 				sequence_FilteredExpressionConstraint(context, (FilteredExpressionConstraint) semanticObject); 
 				return; 
+			case EclPackage.HISTORY_PROFILE:
+				sequence_HistoryProfile(context, (HistoryProfile) semanticObject); 
+				return; 
+			case EclPackage.HISTORY_SUPPLEMENT:
+				sequence_HistorySupplement(context, (HistorySupplement) semanticObject); 
+				return; 
 			case EclPackage.INTEGER_VALUE_COMPARISON:
 				sequence_IntegerValueComparison(context, (IntegerValueComparison) semanticObject); 
 				return; 
@@ -255,6 +262,9 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 				return; 
 			case EclPackage.LANGUAGE_REF_SET_FILTER:
 				sequence_LanguageRefSetFilter(context, (LanguageRefSetFilter) semanticObject); 
+				return; 
+			case EclPackage.MEMBER_FIELD_FILTER:
+				sequence_MemberFieldFilter(context, (MemberFieldFilter) semanticObject); 
 				return; 
 			case EclPackage.MEMBER_OF:
 				sequence_MemberOf(context, (MemberOf) semanticObject); 
@@ -328,20 +338,26 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 			case EclPackage.STRING_VALUE_COMPARISON:
 				sequence_StringValueComparison(context, (StringValueComparison) semanticObject); 
 				return; 
+			case EclPackage.SUPPLEMENT_EXPRESSION_CONSTRAINT:
+				sequence_SupplementExpressionConstraint(context, (SupplementExpressionConstraint) semanticObject); 
+				return; 
+			case EclPackage.TERM_FILTER:
+				sequence_TermFilter(context, (TermFilter) semanticObject); 
+				return; 
 			case EclPackage.TYPE_ID_FILTER:
 				sequence_TypeIdFilter(context, (TypeIdFilter) semanticObject); 
 				return; 
 			case EclPackage.TYPE_TOKEN_FILTER:
 				sequence_TypeTokenFilter(context, (TypeTokenFilter) semanticObject); 
 				return; 
-			case EclPackage.TYPED_TERM_FILTER:
-				sequence_TypedTermFilter(context, (TypedTermFilter) semanticObject); 
+			case EclPackage.TYPED_SEARCH_TERM:
+				sequence_TypedSearchTerm(context, (TypedSearchTerm) semanticObject); 
 				return; 
-			case EclPackage.TYPED_TERM_FILTER_CLAUSE:
-				sequence_TypedTermFilterClause(context, (TypedTermFilterClause) semanticObject); 
+			case EclPackage.TYPED_SEARCH_TERM_CLAUSE:
+				sequence_TypedSearchTermClause(context, (TypedSearchTermClause) semanticObject); 
 				return; 
-			case EclPackage.TYPED_TERM_FILTER_SET:
-				sequence_TypedTermFilterSet(context, (TypedTermFilterSet) semanticObject); 
+			case EclPackage.TYPED_SEARCH_TERM_SET:
+				sequence_TypedSearchTermSet(context, (TypedSearchTermSet) semanticObject); 
 				return; 
 			}
 		else if (epackage == EtlPackage.eINSTANCE)
@@ -472,7 +488,7 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	 *     ConceptReference returns ConceptReference
 	 *
 	 * Constraint:
-	 *     (slot=ConceptReplacementSlot | (id=SnomedIdentifier term=PIPE_DELIMITED_STRING?))
+	 *     (slot=ConceptReplacementSlot | (id=Identifier term=PIPE_DELIMITED_STRING?))
 	 */
 	protected void sequence_ConceptReference(ISerializationContext context, ConceptReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

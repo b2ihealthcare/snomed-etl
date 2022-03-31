@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021 B2i Healthcare Pte Ltd, http://b2i.sg
+ * Copyright 2020-2022 B2i Healthcare Pte Ltd, http://b2i.sg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAndExpressionConstraintAccess().getAlternatives_1_1(), "rule__AndExpressionConstraint__Alternatives_1_1");
 			builder.put(grammarAccess.getSubExpressionConstraintAccess().getAlternatives(), "rule__SubExpressionConstraint__Alternatives");
 			builder.put(grammarAccess.getEclFocusConceptAccess().getAlternatives(), "rule__EclFocusConcept__Alternatives");
-			builder.put(grammarAccess.getMemberOfAccess().getConstraintAlternatives_1_0(), "rule__MemberOf__ConstraintAlternatives_1_0");
+			builder.put(grammarAccess.getMemberOfAccess().getConstraintAlternatives_2_0(), "rule__MemberOf__ConstraintAlternatives_2_0");
 			builder.put(grammarAccess.getAndRefinementAccess().getAlternatives_1_0_1(), "rule__AndRefinement__Alternatives_1_0_1");
 			builder.put(grammarAccess.getSubRefinementAccess().getAlternatives(), "rule__SubRefinement__Alternatives");
 			builder.put(grammarAccess.getAndAttributeSetAccess().getAlternatives_1_1(), "rule__AndAttributeSet__Alternatives_1_1");
@@ -67,21 +67,22 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDataTypeComparisonAccess().getAlternatives(), "rule__DataTypeComparison__Alternatives");
 			builder.put(grammarAccess.getConjunctionFilterAccess().getAlternatives_1_1(), "rule__ConjunctionFilter__Alternatives_1_1");
 			builder.put(grammarAccess.getPropertyFilterAccess().getAlternatives(), "rule__PropertyFilter__Alternatives");
-			builder.put(grammarAccess.getTermFilterAccess().getAlternatives_1(), "rule__TermFilter__Alternatives_1");
-			builder.put(grammarAccess.getTypedTermFilterClauseAccess().getAlternatives(), "rule__TypedTermFilterClause__Alternatives");
+			builder.put(grammarAccess.getSearchTermAccess().getAlternatives(), "rule__SearchTerm__Alternatives");
+			builder.put(grammarAccess.getTypedSearchTermClauseAccess().getAlternatives(), "rule__TypedSearchTermClause__Alternatives");
 			builder.put(grammarAccess.getLanguageFilterAccess().getAlternatives_2(), "rule__LanguageFilter__Alternatives_2");
 			builder.put(grammarAccess.getTypeFilterAccess().getAlternatives(), "rule__TypeFilter__Alternatives");
 			builder.put(grammarAccess.getTypeTokenFilterAccess().getAlternatives_2(), "rule__TypeTokenFilter__Alternatives_2");
 			builder.put(grammarAccess.getDialectFilterAccess().getAlternatives(), "rule__DialectFilter__Alternatives");
 			builder.put(grammarAccess.getDialectIdFilterAccess().getAlternatives_2(), "rule__DialectIdFilter__Alternatives_2");
 			builder.put(grammarAccess.getDialectAliasFilterAccess().getAlternatives_2(), "rule__DialectAliasFilter__Alternatives_2");
-			builder.put(grammarAccess.getAcceptabilityAccess().getAlternatives(), "rule__Acceptability__Alternatives");
 			builder.put(grammarAccess.getDefinitionStatusFilterAccess().getAlternatives(), "rule__DefinitionStatusFilter__Alternatives");
 			builder.put(grammarAccess.getDefinitionStatusTokenFilterAccess().getAlternatives_2(), "rule__DefinitionStatusTokenFilter__Alternatives_2");
 			builder.put(grammarAccess.getFilterValueAccess().getAlternatives(), "rule__FilterValue__Alternatives");
-			builder.put(grammarAccess.getSnomedIdentifierAccess().getAlternatives(), "rule__SnomedIdentifier__Alternatives");
-			builder.put(grammarAccess.getNonNegativeIntegerAccess().getAlternatives(), "rule__NonNegativeInteger__Alternatives");
-			builder.put(grammarAccess.getNonNegativeDecimalAccess().getAlternatives_2(), "rule__NonNegativeDecimal__Alternatives_2");
+			builder.put(grammarAccess.getHistorySupplementAccess().getHistoryAlternatives_4_0(), "rule__HistorySupplement__HistoryAlternatives_4_0");
+			builder.put(grammarAccess.getHistoryProfileAccess().getAlternatives_0(), "rule__HistoryProfile__Alternatives_0");
+			builder.put(grammarAccess.getIdentifierAccess().getAlternatives_0(), "rule__Identifier__Alternatives_0");
+			builder.put(grammarAccess.getIdentifierAccess().getAlternatives_1_0(), "rule__Identifier__Alternatives_1_0");
+			builder.put(grammarAccess.getIdentifierAccess().getAlternatives_1_1(), "rule__Identifier__Alternatives_1_1");
 			builder.put(grammarAccess.getMaxValueAccess().getAlternatives(), "rule__MaxValue__Alternatives");
 			builder.put(grammarAccess.getIntegerAccess().getAlternatives_0(), "rule__Integer__Alternatives_0");
 			builder.put(grammarAccess.getDecimalAccess().getAlternatives_0(), "rule__Decimal__Alternatives_0");
@@ -90,6 +91,7 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getUnquotedStringAccess().getAlternatives(), "rule__UnquotedString__Alternatives");
 			builder.put(grammarAccess.getDialectAliasValueAccess().getAlternatives(), "rule__DialectAliasValue__Alternatives");
 			builder.put(grammarAccess.getLEXICAL_SEARCH_TYPEAccess().getAlternatives(), "rule__LEXICAL_SEARCH_TYPE__Alternatives");
+			builder.put(grammarAccess.getHISTORY_PROFILE_TYPEAccess().getAlternatives(), "rule__HISTORY_PROFILE_TYPE__Alternatives");
 			builder.put(grammarAccess.getSHORT_DOMAINAccess().getAlternatives(), "rule__SHORT_DOMAIN__Alternatives");
 			builder.put(grammarAccess.getNON_NUMERIC_OPERATORAccess().getAlternatives(), "rule__NON_NUMERIC_OPERATOR__Alternatives");
 			builder.put(grammarAccess.getNUMERIC_OPERATORAccess().getAlternatives(), "rule__NUMERIC_OPERATOR__Alternatives");
@@ -145,6 +147,8 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRefinedExpressionConstraintAccess().getGroup_1(), "rule__RefinedExpressionConstraint__Group_1__0");
 			builder.put(grammarAccess.getDottedExpressionConstraintAccess().getGroup(), "rule__DottedExpressionConstraint__Group__0");
 			builder.put(grammarAccess.getDottedExpressionConstraintAccess().getGroup_1(), "rule__DottedExpressionConstraint__Group_1__0");
+			builder.put(grammarAccess.getSupplementExpressionConstraintAccess().getGroup(), "rule__SupplementExpressionConstraint__Group__0");
+			builder.put(grammarAccess.getSupplementExpressionConstraintAccess().getGroup_1(), "rule__SupplementExpressionConstraint__Group_1__0");
 			builder.put(grammarAccess.getFilteredExpressionConstraintAccess().getGroup(), "rule__FilteredExpressionConstraint__Group__0");
 			builder.put(grammarAccess.getFilteredExpressionConstraintAccess().getGroup_1(), "rule__FilteredExpressionConstraint__Group_1__0");
 			builder.put(grammarAccess.getChildOfAccess().getGroup(), "rule__ChildOf__Group__0");
@@ -156,6 +160,9 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAncestorOfAccess().getGroup(), "rule__AncestorOf__Group__0");
 			builder.put(grammarAccess.getAncestorOrSelfOfAccess().getGroup(), "rule__AncestorOrSelfOf__Group__0");
 			builder.put(grammarAccess.getMemberOfAccess().getGroup(), "rule__MemberOf__Group__0");
+			builder.put(grammarAccess.getMemberOfAccess().getGroup_1(), "rule__MemberOf__Group_1__0");
+			builder.put(grammarAccess.getMemberOfAccess().getGroup_1_1(), "rule__MemberOf__Group_1_1__0");
+			builder.put(grammarAccess.getMemberOfAccess().getGroup_1_1_1(), "rule__MemberOf__Group_1_1_1__0");
 			builder.put(grammarAccess.getEclConceptReferenceAccess().getGroup(), "rule__EclConceptReference__Group__0");
 			builder.put(grammarAccess.getEclConceptReferenceSetAccess().getGroup(), "rule__EclConceptReferenceSet__Group__0");
 			builder.put(grammarAccess.getAnyAccess().getGroup(), "rule__Any__Group__0");
@@ -186,12 +193,12 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConjunctionFilterAccess().getGroup(), "rule__ConjunctionFilter__Group__0");
 			builder.put(grammarAccess.getConjunctionFilterAccess().getGroup_1(), "rule__ConjunctionFilter__Group_1__0");
 			builder.put(grammarAccess.getNestedFilterAccess().getGroup(), "rule__NestedFilter__Group__0");
+			builder.put(grammarAccess.getMemberFieldFilterAccess().getGroup(), "rule__MemberFieldFilter__Group__0");
 			builder.put(grammarAccess.getTermFilterAccess().getGroup(), "rule__TermFilter__Group__0");
-			builder.put(grammarAccess.getTypedTermFilterAccess().getGroup(), "rule__TypedTermFilter__Group__0");
-			builder.put(grammarAccess.getTypedTermFilterSetAccess().getGroup(), "rule__TypedTermFilterSet__Group__0");
-			builder.put(grammarAccess.getTypedTermFilterClauseAccess().getGroup_0(), "rule__TypedTermFilterClause__Group_0__0");
-			builder.put(grammarAccess.getTypedTermFilterClauseAccess().getGroup_0_0(), "rule__TypedTermFilterClause__Group_0_0__0");
-			builder.put(grammarAccess.getTypedTermFilterClauseAccess().getGroup_1(), "rule__TypedTermFilterClause__Group_1__0");
+			builder.put(grammarAccess.getTypedSearchTermSetAccess().getGroup(), "rule__TypedSearchTermSet__Group__0");
+			builder.put(grammarAccess.getTypedSearchTermClauseAccess().getGroup_0(), "rule__TypedSearchTermClause__Group_0__0");
+			builder.put(grammarAccess.getTypedSearchTermClauseAccess().getGroup_0_0(), "rule__TypedSearchTermClause__Group_0_0__0");
+			builder.put(grammarAccess.getTypedSearchTermClauseAccess().getGroup_1(), "rule__TypedSearchTermClause__Group_1__0");
 			builder.put(grammarAccess.getLanguageFilterAccess().getGroup(), "rule__LanguageFilter__Group__0");
 			builder.put(grammarAccess.getLanguageFilterAccess().getGroup_2_1(), "rule__LanguageFilter__Group_2_1__0");
 			builder.put(grammarAccess.getTypeIdFilterAccess().getGroup(), "rule__TypeIdFilter__Group__0");
@@ -203,7 +210,6 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDialectAliasFilterAccess().getGroup_2_1(), "rule__DialectAliasFilter__Group_2_1__0");
 			builder.put(grammarAccess.getDialectAccess().getGroup(), "rule__Dialect__Group__0");
 			builder.put(grammarAccess.getDialectAliasAccess().getGroup(), "rule__DialectAlias__Group__0");
-			builder.put(grammarAccess.getAcceptabilityTokenSetAccess().getGroup(), "rule__AcceptabilityTokenSet__Group__0");
 			builder.put(grammarAccess.getDefinitionStatusIdFilterAccess().getGroup(), "rule__DefinitionStatusIdFilter__Group__0");
 			builder.put(grammarAccess.getDefinitionStatusTokenFilterAccess().getGroup(), "rule__DefinitionStatusTokenFilter__Group__0");
 			builder.put(grammarAccess.getDefinitionStatusTokenFilterAccess().getGroup_2_1(), "rule__DefinitionStatusTokenFilter__Group_2_1__0");
@@ -215,6 +221,10 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAcceptableInFilterAccess().getGroup(), "rule__AcceptableInFilter__Group__0");
 			builder.put(grammarAccess.getLanguageRefSetFilterAccess().getGroup(), "rule__LanguageRefSetFilter__Group__0");
 			builder.put(grammarAccess.getCaseSignificanceFilterAccess().getGroup(), "rule__CaseSignificanceFilter__Group__0");
+			builder.put(grammarAccess.getHistorySupplementAccess().getGroup(), "rule__HistorySupplement__Group__0");
+			builder.put(grammarAccess.getHistoryProfileAccess().getGroup(), "rule__HistoryProfile__Group__0");
+			builder.put(grammarAccess.getIdentifierAccess().getGroup(), "rule__Identifier__Group__0");
+			builder.put(grammarAccess.getIdentifierAccess().getGroup_1(), "rule__Identifier__Group_1__0");
 			builder.put(grammarAccess.getNonNegativeDecimalAccess().getGroup(), "rule__NonNegativeDecimal__Group__0");
 			builder.put(grammarAccess.getIntegerAccess().getGroup(), "rule__Integer__Group__0");
 			builder.put(grammarAccess.getDecimalAccess().getGroup(), "rule__Decimal__Group__0");
@@ -284,6 +294,7 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExclusionExpressionConstraintAccess().getRightAssignment_1_2(), "rule__ExclusionExpressionConstraint__RightAssignment_1_2");
 			builder.put(grammarAccess.getRefinedExpressionConstraintAccess().getRefinementAssignment_1_2(), "rule__RefinedExpressionConstraint__RefinementAssignment_1_2");
 			builder.put(grammarAccess.getDottedExpressionConstraintAccess().getAttributeAssignment_1_2(), "rule__DottedExpressionConstraint__AttributeAssignment_1_2");
+			builder.put(grammarAccess.getSupplementExpressionConstraintAccess().getSupplementAssignment_1_1(), "rule__SupplementExpressionConstraint__SupplementAssignment_1_1");
 			builder.put(grammarAccess.getFilteredExpressionConstraintAccess().getFilterAssignment_1_1(), "rule__FilteredExpressionConstraint__FilterAssignment_1_1");
 			builder.put(grammarAccess.getChildOfAccess().getConstraintAssignment_1(), "rule__ChildOf__ConstraintAssignment_1");
 			builder.put(grammarAccess.getChildOrSelfOfAccess().getConstraintAssignment_1(), "rule__ChildOrSelfOf__ConstraintAssignment_1");
@@ -293,7 +304,9 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParentOrSelfOfAccess().getConstraintAssignment_1(), "rule__ParentOrSelfOf__ConstraintAssignment_1");
 			builder.put(grammarAccess.getAncestorOfAccess().getConstraintAssignment_1(), "rule__AncestorOf__ConstraintAssignment_1");
 			builder.put(grammarAccess.getAncestorOrSelfOfAccess().getConstraintAssignment_1(), "rule__AncestorOrSelfOf__ConstraintAssignment_1");
-			builder.put(grammarAccess.getMemberOfAccess().getConstraintAssignment_1(), "rule__MemberOf__ConstraintAssignment_1");
+			builder.put(grammarAccess.getMemberOfAccess().getRefsetFieldsAssignment_1_1_0(), "rule__MemberOf__RefsetFieldsAssignment_1_1_0");
+			builder.put(grammarAccess.getMemberOfAccess().getRefsetFieldsAssignment_1_1_1_1(), "rule__MemberOf__RefsetFieldsAssignment_1_1_1_1");
+			builder.put(grammarAccess.getMemberOfAccess().getConstraintAssignment_2(), "rule__MemberOf__ConstraintAssignment_2");
 			builder.put(grammarAccess.getEclConceptReferenceAccess().getIdAssignment_0(), "rule__EclConceptReference__IdAssignment_0");
 			builder.put(grammarAccess.getEclConceptReferenceAccess().getTermAssignment_1(), "rule__EclConceptReference__TermAssignment_1");
 			builder.put(grammarAccess.getEclConceptReferenceSetAccess().getConceptsAssignment_1(), "rule__EclConceptReferenceSet__ConceptsAssignment_1");
@@ -327,14 +340,16 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDisjunctionFilterAccess().getRightAssignment_1_2(), "rule__DisjunctionFilter__RightAssignment_1_2");
 			builder.put(grammarAccess.getConjunctionFilterAccess().getRightAssignment_1_2(), "rule__ConjunctionFilter__RightAssignment_1_2");
 			builder.put(grammarAccess.getNestedFilterAccess().getNestedAssignment_1(), "rule__NestedFilter__NestedAssignment_1");
-			builder.put(grammarAccess.getTypedTermFilterAccess().getOpAssignment_0(), "rule__TypedTermFilter__OpAssignment_0");
-			builder.put(grammarAccess.getTypedTermFilterAccess().getClauseAssignment_1(), "rule__TypedTermFilter__ClauseAssignment_1");
-			builder.put(grammarAccess.getTypedTermFilterSetAccess().getOpAssignment_0(), "rule__TypedTermFilterSet__OpAssignment_0");
-			builder.put(grammarAccess.getTypedTermFilterSetAccess().getClausesAssignment_2(), "rule__TypedTermFilterSet__ClausesAssignment_2");
-			builder.put(grammarAccess.getTypedTermFilterClauseAccess().getLexicalSearchTypeAssignment_0_0_0(), "rule__TypedTermFilterClause__LexicalSearchTypeAssignment_0_0_0");
-			builder.put(grammarAccess.getTypedTermFilterClauseAccess().getTermAssignment_0_1(), "rule__TypedTermFilterClause__TermAssignment_0_1");
-			builder.put(grammarAccess.getTypedTermFilterClauseAccess().getLexicalSearchTypeAssignment_1_0(), "rule__TypedTermFilterClause__LexicalSearchTypeAssignment_1_0");
-			builder.put(grammarAccess.getTypedTermFilterClauseAccess().getTermAssignment_1_2(), "rule__TypedTermFilterClause__TermAssignment_1_2");
+			builder.put(grammarAccess.getMemberFieldFilterAccess().getRefsetFieldNameAssignment_0(), "rule__MemberFieldFilter__RefsetFieldNameAssignment_0");
+			builder.put(grammarAccess.getMemberFieldFilterAccess().getComparisonAssignment_1(), "rule__MemberFieldFilter__ComparisonAssignment_1");
+			builder.put(grammarAccess.getTermFilterAccess().getOpAssignment_1(), "rule__TermFilter__OpAssignment_1");
+			builder.put(grammarAccess.getTermFilterAccess().getSearchTermAssignment_2(), "rule__TermFilter__SearchTermAssignment_2");
+			builder.put(grammarAccess.getTypedSearchTermAccess().getClauseAssignment(), "rule__TypedSearchTerm__ClauseAssignment");
+			builder.put(grammarAccess.getTypedSearchTermSetAccess().getClausesAssignment_1(), "rule__TypedSearchTermSet__ClausesAssignment_1");
+			builder.put(grammarAccess.getTypedSearchTermClauseAccess().getLexicalSearchTypeAssignment_0_0_0(), "rule__TypedSearchTermClause__LexicalSearchTypeAssignment_0_0_0");
+			builder.put(grammarAccess.getTypedSearchTermClauseAccess().getTermAssignment_0_1(), "rule__TypedSearchTermClause__TermAssignment_0_1");
+			builder.put(grammarAccess.getTypedSearchTermClauseAccess().getLexicalSearchTypeAssignment_1_0(), "rule__TypedSearchTermClause__LexicalSearchTypeAssignment_1_0");
+			builder.put(grammarAccess.getTypedSearchTermClauseAccess().getTermAssignment_1_2(), "rule__TypedSearchTermClause__TermAssignment_1_2");
 			builder.put(grammarAccess.getLanguageFilterAccess().getOpAssignment_1(), "rule__LanguageFilter__OpAssignment_1");
 			builder.put(grammarAccess.getLanguageFilterAccess().getLanguageCodesAssignment_2_0(), "rule__LanguageFilter__LanguageCodesAssignment_2_0");
 			builder.put(grammarAccess.getLanguageFilterAccess().getLanguageCodesAssignment_2_1_1(), "rule__LanguageFilter__LanguageCodesAssignment_2_1_1");
@@ -352,17 +367,18 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDialectAccess().getLanguageRefSetIdAssignment_0(), "rule__Dialect__LanguageRefSetIdAssignment_0");
 			builder.put(grammarAccess.getDialectAccess().getAcceptabilityAssignment_1(), "rule__Dialect__AcceptabilityAssignment_1");
 			builder.put(grammarAccess.getDialectAliasAccess().getAliasAssignment_0(), "rule__DialectAlias__AliasAssignment_0");
-			builder.put(grammarAccess.getDialectAliasAccess().getAcceptabilityAssignment_2(), "rule__DialectAlias__AcceptabilityAssignment_2");
-			builder.put(grammarAccess.getAcceptabilityIdSetAccess().getAcceptabilitiesAssignment(), "rule__AcceptabilityIdSet__AcceptabilitiesAssignment");
-			builder.put(grammarAccess.getAcceptabilityTokenSetAccess().getAcceptabilitiesAssignment_1(), "rule__AcceptabilityTokenSet__AcceptabilitiesAssignment_1");
+			builder.put(grammarAccess.getDialectAliasAccess().getAcceptabilityAssignment_1(), "rule__DialectAlias__AcceptabilityAssignment_1");
+			builder.put(grammarAccess.getAcceptabilityAccess().getAcceptabilitiesAssignment(), "rule__Acceptability__AcceptabilitiesAssignment");
 			builder.put(grammarAccess.getDefinitionStatusIdFilterAccess().getOpAssignment_1(), "rule__DefinitionStatusIdFilter__OpAssignment_1");
 			builder.put(grammarAccess.getDefinitionStatusIdFilterAccess().getDefinitionStatusAssignment_2(), "rule__DefinitionStatusIdFilter__DefinitionStatusAssignment_2");
 			builder.put(grammarAccess.getDefinitionStatusTokenFilterAccess().getOpAssignment_1(), "rule__DefinitionStatusTokenFilter__OpAssignment_1");
 			builder.put(grammarAccess.getDefinitionStatusTokenFilterAccess().getDefinitionStatusTokensAssignment_2_0(), "rule__DefinitionStatusTokenFilter__DefinitionStatusTokensAssignment_2_0");
 			builder.put(grammarAccess.getDefinitionStatusTokenFilterAccess().getDefinitionStatusTokensAssignment_2_1_1(), "rule__DefinitionStatusTokenFilter__DefinitionStatusTokensAssignment_2_1_1");
+			builder.put(grammarAccess.getModuleFilterAccess().getOpAssignment_1(), "rule__ModuleFilter__OpAssignment_1");
 			builder.put(grammarAccess.getModuleFilterAccess().getModuleIdAssignment_2(), "rule__ModuleFilter__ModuleIdAssignment_2");
 			builder.put(grammarAccess.getEffectiveTimeFilterAccess().getOpAssignment_1(), "rule__EffectiveTimeFilter__OpAssignment_1");
 			builder.put(grammarAccess.getEffectiveTimeFilterAccess().getEffectiveTimeAssignment_2(), "rule__EffectiveTimeFilter__EffectiveTimeAssignment_2");
+			builder.put(grammarAccess.getActiveFilterAccess().getOpAssignment_1(), "rule__ActiveFilter__OpAssignment_1");
 			builder.put(grammarAccess.getActiveFilterAccess().getActiveAssignment_2(), "rule__ActiveFilter__ActiveAssignment_2");
 			builder.put(grammarAccess.getSemanticTagFilterAccess().getOpAssignment_1(), "rule__SemanticTagFilter__OpAssignment_1");
 			builder.put(grammarAccess.getSemanticTagFilterAccess().getSemanticTagAssignment_2(), "rule__SemanticTagFilter__SemanticTagAssignment_2");
@@ -370,6 +386,8 @@ public class EtlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAcceptableInFilterAccess().getLanguageRefSetIdAssignment_2(), "rule__AcceptableInFilter__LanguageRefSetIdAssignment_2");
 			builder.put(grammarAccess.getLanguageRefSetFilterAccess().getLanguageRefSetIdAssignment_2(), "rule__LanguageRefSetFilter__LanguageRefSetIdAssignment_2");
 			builder.put(grammarAccess.getCaseSignificanceFilterAccess().getCaseSignificanceIdAssignment_2(), "rule__CaseSignificanceFilter__CaseSignificanceIdAssignment_2");
+			builder.put(grammarAccess.getHistorySupplementAccess().getHistoryAssignment_4(), "rule__HistorySupplement__HistoryAssignment_4");
+			builder.put(grammarAccess.getHistoryProfileAccess().getProfileAssignment_1(), "rule__HistoryProfile__ProfileAssignment_1");
 		}
 	}
 	
