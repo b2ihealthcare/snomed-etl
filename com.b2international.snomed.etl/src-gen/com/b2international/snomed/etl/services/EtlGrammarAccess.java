@@ -2813,8 +2813,9 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	///*
 	// * Datatype rules
 	// */ Identifier:
-	//	(DIGIT | ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | REVERSED | KEYWORD)+ ((DASH | UNDERSCORE) (DIGIT
-	//	| ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | REVERSED | KEYWORD)+)*;
+	//	(DIGIT | ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | MEMBER_SHORT_KEYWORD | REVERSED | KEYWORD)+
+	//	((DASH | UNDERSCORE) (DIGIT | ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | MEMBER_SHORT_KEYWORD |
+	//	REVERSED | KEYWORD)+)*;
 	public EclGrammarAccess.IdentifierElements getIdentifierAccess() {
 		return gaEcl.getIdentifierAccess();
 	}
