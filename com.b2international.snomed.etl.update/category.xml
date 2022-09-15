@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/com.b2international.snomed.etl.feature_1.3.4.jar" id="com.b2international.snomed.etl.feature" version="1.3.4">
+   <feature url="features/com.b2international.snomed.etl.feature_1.3.5.qualifier.jar" id="com.b2international.snomed.etl.feature" version="1.3.5.qualifier">
       <category name="snomed-etl"/>
    </feature>
-   <feature url="features/com.b2international.snomed.etl.ui.feature_1.3.4.jar" id="com.b2international.snomed.etl.ui.feature" version="1.3.4">
+   <feature url="features/com.b2international.snomed.etl.ui.feature_1.3.5.qualifier.jar" id="com.b2international.snomed.etl.ui.feature" version="1.3.5.qualifier">
       <category name="snomed-etl"/>
    </feature>
    <category-def name="snomed-etl" label="SNOMED CT Expression Template Language"/>
