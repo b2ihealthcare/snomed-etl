@@ -107,6 +107,8 @@ RULE_CONJUNCTION_KEYWORD : ('AND'|('A'|'a') ('N'|'n') ('D'|'d'));
 
 RULE_DISJUNCTION_KEYWORD : ('OR'|('O'|'o') ('R'|'r'));
 
+RULE_ID_KEYWORD : ('ID'|('I'|'i') ('D'|'d'));
+
 RULE_REVERSED : 'R';
 
 RULE_MEMBER_SHORT_KEYWORD : ('M'|'m');

@@ -2137,7 +2137,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//EclConceptReference:
-	//	id=Identifier term=PIPE_DELIMITED_STRING?;
+	//	id=Identifier WS* term=PIPE_DELIMITED_STRING?;
 	public EclGrammarAccess.EclConceptReferenceElements getEclConceptReferenceAccess() {
 		return gaEcl.getEclConceptReferenceAccess();
 	}
@@ -2438,6 +2438,8 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//	| LanguageFilter
 	//	| TypeFilter
 	//	| DialectFilter
+	//	// Description filters in ECL 2.1
+	//	| IdFilter
 	//	// Concept filters in ECL 1.6
 	//	| DefinitionStatusFilter
 	//	// Concept (Description and Member) filters in ECL 1.6, component filters in QL 0.1 (extension)
@@ -2472,6 +2474,16 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	
 	public ParserRule getMemberFieldFilterRule() {
 		return getMemberFieldFilterAccess().getRule();
+	}
+	
+	//IdFilter:
+	//	ID_KEYWORD op=NON_NUMERIC_OPERATOR (ids+=Identifier | ROUND_OPEN ids+=Identifier+ ROUND_CLOSE);
+	public EclGrammarAccess.IdFilterElements getIdFilterAccess() {
+		return gaEcl.getIdFilterAccess();
+	}
+	
+	public ParserRule getIdFilterRule() {
+		return getIdFilterAccess().getRule();
 	}
 	
 	//TermFilter:
@@ -2812,7 +2824,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	
 	///*
 	// * Datatype rules
-	// */ Identifier:
+	// */ Identifier hidden():
 	//	(DIGIT | ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | MEMBER_SHORT_KEYWORD | REVERSED | KEYWORD)+
 	//	((DASH | UNDERSCORE) (DIGIT | ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | MEMBER_SHORT_KEYWORD |
 	//	REVERSED | KEYWORD)+)*;
@@ -2844,7 +2856,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getNonNegativeDecimalAccess().getRule();
 	}
 	
-	//MaxValue ecore::EInt hidden():
+	//MaxValue ecore::EInt:
 	//	NonNegativeInteger | WILDCARD;
 	public EclGrammarAccess.MaxValueElements getMaxValueAccess() {
 		return gaEcl.getMaxValueAccess();
@@ -2874,7 +2886,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getDecimalAccess().getRule();
 	}
 	
-	//Boolean ecore::EBoolean hidden():
+	//Boolean ecore::EBoolean:
 	//	TRUE_KEYWORD | FALSE_KEYWORD;
 	public EclGrammarAccess.BooleanElements getBooleanAccess() {
 		return gaEcl.getBooleanAccess();
@@ -2885,7 +2897,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//// Value converter and validation checks for allowed integers 0 and 1
-	//ActiveBoolean ecore::EBoolean hidden():
+	//ActiveBoolean ecore::EBoolean:
 	//	NonNegativeInteger | Boolean;
 	public EclGrammarAccess.ActiveBooleanElements getActiveBooleanAccess() {
 		return gaEcl.getActiveBooleanAccess();
@@ -2940,7 +2952,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getUnquotedStringAccess().getRule();
 	}
 	
-	//DialectAliasValue:
+	//DialectAliasValue hidden():
 	//	(DASH | KEYWORD | DIGIT)+;
 	public EclGrammarAccess.DialectAliasValueElements getDialectAliasValueAccess() {
 		return gaEcl.getDialectAliasValueAccess();
@@ -2950,8 +2962,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		return getDialectAliasValueAccess().getRule();
 	}
 	
-	//LEXICAL_SEARCH_TYPE // Lexical search types supported in ECL 1.5 
-	//:
+	//LEXICAL_SEARCH_TYPE:
 	//	MATCH_KEYWORD
 	//	| WILD_KEYWORD
 	//	// Lexical search type extensions 
@@ -3195,6 +3206,12 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//	'OR' | ('O' | 'o') ('R' | 'r');
 	public TerminalRule getDISJUNCTION_KEYWORDRule() {
 		return gaEcl.getDISJUNCTION_KEYWORDRule();
+	}
+	
+	//terminal ID_KEYWORD:
+	//	'ID' | ('I' | 'i') ('D' | 'd');
+	public TerminalRule getID_KEYWORDRule() {
+		return gaEcl.getID_KEYWORDRule();
 	}
 	
 	//terminal REVERSED:

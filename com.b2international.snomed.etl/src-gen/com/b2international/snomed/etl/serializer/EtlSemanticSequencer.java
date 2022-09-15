@@ -52,6 +52,7 @@ import com.b2international.snomed.ecl.ecl.FilterConstraint;
 import com.b2international.snomed.ecl.ecl.FilteredExpressionConstraint;
 import com.b2international.snomed.ecl.ecl.HistoryProfile;
 import com.b2international.snomed.ecl.ecl.HistorySupplement;
+import com.b2international.snomed.ecl.ecl.IdFilter;
 import com.b2international.snomed.ecl.ecl.IntegerValueComparison;
 import com.b2international.snomed.ecl.ecl.LanguageFilter;
 import com.b2international.snomed.ecl.ecl.LanguageRefSetFilter;
@@ -253,6 +254,9 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 				return; 
 			case EclPackage.HISTORY_SUPPLEMENT:
 				sequence_HistorySupplement(context, (HistorySupplement) semanticObject); 
+				return; 
+			case EclPackage.ID_FILTER:
+				sequence_IdFilter(context, (IdFilter) semanticObject); 
 				return; 
 			case EclPackage.INTEGER_VALUE_COMPARISON:
 				sequence_IntegerValueComparison(context, (IntegerValueComparison) semanticObject); 
