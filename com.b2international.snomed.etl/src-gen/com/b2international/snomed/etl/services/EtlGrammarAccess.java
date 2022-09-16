@@ -2825,9 +2825,9 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	///*
 	// * Datatype rules
 	// */ Identifier hidden():
-	//	(DIGIT | ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | MEMBER_SHORT_KEYWORD | REVERSED | KEYWORD)+
-	//	((DASH | UNDERSCORE) (DIGIT | ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | MEMBER_SHORT_KEYWORD |
-	//	REVERSED | KEYWORD)+)*;
+	//	(DIGIT | ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | MEMBER_SHORT_KEYWORD | REVERSED | ID_KEYWORD |
+	//	KEYWORD) (DIGIT | ALPHA | CONCEPT_SHORT_KEYWORD | DESCRIPTION_SHORT_KEYWORD | MEMBER_SHORT_KEYWORD | REVERSED |
+	//	ID_KEYWORD | KEYWORD | DASH | UNDERSCORE)*;
 	public EclGrammarAccess.IdentifierElements getIdentifierAccess() {
 		return gaEcl.getIdentifierAccess();
 	}
@@ -2938,6 +2938,7 @@ public class EtlGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	//	| MAX_KEYWORD
 	//	| CONJUNCTION_KEYWORD
 	//	| DISJUNCTION_KEYWORD
+	//	| ID_KEYWORD
 	//	| REVERSED
 	//	| MEMBER_SHORT_KEYWORD
 	//	| DESCRIPTION_SHORT_KEYWORD
