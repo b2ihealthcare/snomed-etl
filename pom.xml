@@ -16,13 +16,13 @@
 		<!-- Maven Dependency Versions -->
 		
 		<!-- p2 repositories -->
-		<snomed.ecl.version>2.1.1</snomed.ecl.version>
+		<snomed.ecl.version>2.1.2-SNAPSHOT</snomed.ecl.version>
 		<snomed.ecl.site>mvn:com.b2international:com.b2international.snomed.ecl.update:${snomed.ecl.version}:zip</snomed.ecl.site>
 		
 		<!-- Build tool/compiler versions -->
 		<tycho.version>2.6.0</tycho.version>
 		<tycho-extras.version>2.6.0</tycho-extras.version>
-		<xtend.compiler.version>2.23.0</xtend.compiler.version>
+		<xtend.compiler.version>2.25.0</xtend.compiler.version>
 		
 		<!-- Versioning -->
 		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
@@ -58,7 +58,7 @@
 		</repository>
 		<repository>
 			<id>emf</id>
-			<url>http://download.eclipse.org/modeling/emf/emf/builds/release/2.23/</url>
+			<url>http://download.eclipse.org/modeling/emf/emf/builds/release/2.25/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
@@ -73,7 +73,7 @@
 		</repository>
 		<repository>
 			<id>xtext</id>
-			<url>https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.23.0/</url>
+			<url>https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.25.0/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
