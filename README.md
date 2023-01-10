@@ -2,7 +2,7 @@
 
 SNOMED CT Expression Template Language Implementation with IDE integration(s), user interface using Xtext.
 
-[![build status](https://img.shields.io/github/workflow/status/b2ihealthcare/snomed-etl/Java%20CI/main?style=flat-square)](https://github.com/b2ihealthcare/snomed-etl/actions)
+[![build status](https://img.shields.io/github/actions/workflow/status/b2ihealthcare/snomed-etl/maven.yml?branch=main&style=flat-square)](https://github.com/b2ihealthcare/snomed-etl/actions)
 [![latest release](https://img.shields.io/github/tag/b2ihealthcare/snomed-etl.svg?style=flat-square)](https://github.com/b2ihealthcare/snomed-etl/releases/tag/v1.3.5)
 [![GitHub](https://img.shields.io/github/license/b2ihealthcare/snomed-etl.svg?style=flat-square)](https://github.com/b2ihealthcare/snomed-etl/blob/main/LICENSE)
 
