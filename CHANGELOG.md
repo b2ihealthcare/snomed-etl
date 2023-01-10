@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.3.6
+- Update ECL grammar to 2.1.2
+
 ## 1.3.5
 - Update ECL grammar to 2.1.1
 
