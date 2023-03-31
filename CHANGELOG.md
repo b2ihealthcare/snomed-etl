@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.3.8
+- Update ECL to 2.1.4
+
 ## 1.3.7
 - Update ECL to 2.1.3
 
