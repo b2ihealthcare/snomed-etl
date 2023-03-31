@@ -2,7 +2,7 @@
 <feature
       id="com.b2international.snomed.etl.ui.feature"
       label="SNOMED CT Expression Template Language UI Feature"
-      version="1.3.8.qualifier"
+      version="1.3.8"
       provider-name="B2i Healthcare">
 
    <description url="http://www.example.com/description">
