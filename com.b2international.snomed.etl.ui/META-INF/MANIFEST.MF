@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.xtext.ui,
  org.eclipse.xtext.ui.codetemplates.ui,
  org.eclipse.compare,
  com.b2international.snomed.etl.ide;visibility:=reexport,
- com.b2international.snomed.ecl.ui
+ com.b2international.snomed.ecl.ui;bundle-version="2.1.5"
 Import-Package: org.apache.log4j
 Export-Package: com.b2international.snomed.etl.ui,
  com.b2international.snomed.etl.ui.contentassist,
