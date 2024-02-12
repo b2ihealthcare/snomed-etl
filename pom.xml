@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.b2international</groupId>
 	<artifactId>etl-parent</artifactId>
-	<version>1.3.9-SNAPSHOT</version>
+	<version>1.3.9</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -16,7 +16,7 @@
 		<!-- Maven Dependency Versions -->
 		
 		<!-- p2 repositories -->
-		<snomed.ecl.version>2.1.5-SNAPSHOT</snomed.ecl.version>
+		<snomed.ecl.version>2.1.5</snomed.ecl.version>
 		<snomed.ecl.site>mvn:com.b2international:com.b2international.snomed.ecl.update:${snomed.ecl.version}:zip</snomed.ecl.site>
 		
 		<!-- Build tool/compiler versions -->
