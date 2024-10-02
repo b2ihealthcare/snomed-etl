@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.equinox.common;bundle-version="3.5.0",
  org.eclipse.emf.common,
  org.eclipse.xtext;visibility:=reexport,
  org.antlr.runtime,
- com.b2international.snomed.ecl;bundle-version="2.1.5";visibility:=reexport
+ com.b2international.snomed.ecl;bundle-version="2.1.6";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Import-Package: org.apache.log4j,
  org.slf4j;version="1.7.25"
