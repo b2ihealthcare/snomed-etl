@@ -302,7 +302,6 @@ public class EtlPackageImpl extends EPackageImpl implements EtlPackage
   {
     super(eNS_URI, EtlFactory.eINSTANCE);
   }
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

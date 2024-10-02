@@ -33,6 +33,7 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected EtlGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_AlternateIdentifier_WSTerminalRuleCall_3_a;
 	protected AbstractElementAlias match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0;
 	protected AbstractElementAlias match_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0;
 	protected AbstractElementAlias match_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0;
@@ -47,6 +48,7 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (EtlGrammarAccess) access;
+		match_AlternateIdentifier_WSTerminalRuleCall_3_a = new TokenAlias(true, true, grammarAccess.getAlternateIdentifierAccess().getWSTerminalRuleCall_3());
 		match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndAttributeSetAccess().getCOMMATerminalRuleCall_1_1_1()), new TokenAlias(false, false, grammarAccess.getAndAttributeSetAccess().getCONJUNCTION_KEYWORDTerminalRuleCall_1_1_0()));
 		match_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndExpressionConstraintAccess().getCOMMATerminalRuleCall_1_1_1()), new TokenAlias(false, false, grammarAccess.getAndExpressionConstraintAccess().getCONJUNCTION_KEYWORDTerminalRuleCall_1_1_0()));
 		match_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAndRefinementAccess().getCOMMATerminalRuleCall_1_0_1_1()), new TokenAlias(false, false, grammarAccess.getAndRefinementAccess().getCONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0()));
@@ -81,6 +83,10 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getCURLY_OPENToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDASHRule())
 			return getDASHToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getDBL_EM_GTRule())
+			return getDBL_EM_GTToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getDBL_EM_LTRule())
+			return getDBL_EM_LTToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDBL_GTRule())
 			return getDBL_GTToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDBL_GT_EMRule())
@@ -284,6 +290,26 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "-";
+	}
+	
+	/**
+	 * terminal DBL_EM_GT:
+	 * 	'!!>';
+	 */
+	protected String getDBL_EM_GTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "!!>";
+	}
+	
+	/**
+	 * terminal DBL_EM_LT:
+	 * 	'!!<';
+	 */
+	protected String getDBL_EM_LTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "!!<";
 	}
 	
 	/**
@@ -802,7 +828,9 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0.equals(syntax))
+			if (match_AlternateIdentifier_WSTerminalRuleCall_3_a.equals(syntax))
+				emit_AlternateIdentifier_WSTerminalRuleCall_3_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0.equals(syntax))
 				emit_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0.equals(syntax))
 				emit_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -827,73 +855,109 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 
 	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     code=AlternateCode (ambiguity) (rule end)
+	 *     code=AlternateCode (ambiguity) term=PIPE_DELIMITED_STRING
+	 *     code=STRING (ambiguity) (rule end)
+	 *     code=STRING (ambiguity) term=PIPE_DELIMITED_STRING
+	 
+	 * </pre>
+	 */
+	protected void emit_AlternateIdentifier_WSTerminalRuleCall_3_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     CONJUNCTION_KEYWORD | COMMA
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     {AndRefinement.left=} (ambiguity) right=SubAttributeSet
+	 
+	 * </pre>
 	 */
 	protected void emit_AndAttributeSet_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     CONJUNCTION_KEYWORD | COMMA
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     {AndExpressionConstraint.left=} (ambiguity) right=ExclusionExpressionConstraint
+	 
+	 * </pre>
 	 */
 	protected void emit_AndExpressionConstraint_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     CONJUNCTION_KEYWORD | COMMA
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     {AndRefinement.left=} (ambiguity) right=SubRefinement
+	 
+	 * </pre>
 	 */
 	protected void emit_AndRefinement_COMMATerminalRuleCall_1_0_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_0_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     CONJUNCTION_KEYWORD | COMMA
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     {ConjunctionFilter.left=} (ambiguity) right=PropertyFilter
+	 
+	 * </pre>
 	 */
 	protected void emit_ConjunctionFilter_COMMATerminalRuleCall_1_1_1_or_CONJUNCTION_KEYWORDTerminalRuleCall_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     WS*
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     id=Identifier (ambiguity) (rule end)
 	 *     id=Identifier (ambiguity) term=PIPE_DELIMITED_STRING
+	 
+	 * </pre>
 	 */
 	protected void emit_EclConceptReference_WSTerminalRuleCall_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     TILDE?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) min=NonNegativeInteger
+	 
+	 * </pre>
 	 */
 	protected void emit_EtlCardinality_TILDETerminalRuleCall_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     SCG?
 	 *
@@ -901,40 +965,51 @@ public class EtlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) DOUBLE_SQUARE_OPEN PLUS (ambiguity) DOUBLE_SQUARE_CLOSE (rule start)
 	 *     (rule start) DOUBLE_SQUARE_OPEN PLUS (ambiguity) ROUND_OPEN constraint=ExpressionConstraint
 	 *     (rule start) DOUBLE_SQUARE_OPEN PLUS (ambiguity) name=SLOTNAME_STRING
+	 
+	 * </pre>
 	 */
 	protected void emit_ExpressionReplacementSlot_SCGTerminalRuleCall_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     EQUIVALENT_TO?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) expression=SubExpression
+	 
+	 * </pre>
 	 */
 	protected void emit_ExpressionTemplate_EQUIVALENT_TOTerminalRuleCall_1_0_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     DASH | UNDERSCORE
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) profile=HISTORY_PROFILE_TYPE
+	 
+	 * </pre>
 	 */
 	protected void emit_HistoryProfile_DASHTerminalRuleCall_0_0_or_UNDERSCORETerminalRuleCall_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
+	 * <pre>
 	 * Ambiguous syntax:
 	 *     COMMA?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     attributes+=Attribute (ambiguity) groups+=AttributeGroup
 	 *     groups+=AttributeGroup (ambiguity) groups+=AttributeGroup
+	 
+	 * </pre>
 	 */
 	protected void emit_Refinement_COMMATerminalRuleCall_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

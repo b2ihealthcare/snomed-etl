@@ -133,6 +133,10 @@ RULE_LT_EM : '<!';
 
 RULE_GT_EM : '>!';
 
+RULE_DBL_EM_LT : '!!<';
+
+RULE_DBL_EM_GT : '!!>';
+
 RULE_GTE : '>=';
 
 RULE_LTE : '<=';

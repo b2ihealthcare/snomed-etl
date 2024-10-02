@@ -18,6 +18,7 @@ package com.b2international.snomed.etl.serializer;
 import com.b2international.snomed.ecl.ecl.Acceptability;
 import com.b2international.snomed.ecl.ecl.AcceptableInFilter;
 import com.b2international.snomed.ecl.ecl.ActiveFilter;
+import com.b2international.snomed.ecl.ecl.AlternateIdentifier;
 import com.b2international.snomed.ecl.ecl.AncestorOf;
 import com.b2international.snomed.ecl.ecl.AncestorOrSelfOf;
 import com.b2international.snomed.ecl.ecl.AndExpressionConstraint;
@@ -26,6 +27,7 @@ import com.b2international.snomed.ecl.ecl.Any;
 import com.b2international.snomed.ecl.ecl.AttributeComparison;
 import com.b2international.snomed.ecl.ecl.AttributeConstraint;
 import com.b2international.snomed.ecl.ecl.BooleanValueComparison;
+import com.b2international.snomed.ecl.ecl.Bottom;
 import com.b2international.snomed.ecl.ecl.Cardinality;
 import com.b2international.snomed.ecl.ecl.CaseSignificanceFilter;
 import com.b2international.snomed.ecl.ecl.ChildOf;
@@ -73,6 +75,7 @@ import com.b2international.snomed.ecl.ecl.SemanticTagFilter;
 import com.b2international.snomed.ecl.ecl.StringValueComparison;
 import com.b2international.snomed.ecl.ecl.SupplementExpressionConstraint;
 import com.b2international.snomed.ecl.ecl.TermFilter;
+import com.b2international.snomed.ecl.ecl.Top;
 import com.b2international.snomed.ecl.ecl.TypeIdFilter;
 import com.b2international.snomed.ecl.ecl.TypeTokenFilter;
 import com.b2international.snomed.ecl.ecl.TypedSearchTerm;
@@ -141,6 +144,9 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 			case EclPackage.ACTIVE_FILTER:
 				sequence_ActiveFilter(context, (ActiveFilter) semanticObject); 
 				return; 
+			case EclPackage.ALTERNATE_IDENTIFIER:
+				sequence_AlternateIdentifier(context, (AlternateIdentifier) semanticObject); 
+				return; 
 			case EclPackage.ANCESTOR_OF:
 				sequence_AncestorOf(context, (AncestorOf) semanticObject); 
 				return; 
@@ -179,6 +185,9 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 				return; 
 			case EclPackage.BOOLEAN_VALUE_COMPARISON:
 				sequence_BooleanValueComparison(context, (BooleanValueComparison) semanticObject); 
+				return; 
+			case EclPackage.BOTTOM:
+				sequence_Bottom(context, (Bottom) semanticObject); 
 				return; 
 			case EclPackage.CARDINALITY:
 				sequence_Cardinality(context, (Cardinality) semanticObject); 
@@ -348,6 +357,9 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 			case EclPackage.TERM_FILTER:
 				sequence_TermFilter(context, (TermFilter) semanticObject); 
 				return; 
+			case EclPackage.TOP:
+				sequence_Top(context, (Top) semanticObject); 
+				return; 
 			case EclPackage.TYPE_ID_FILTER:
 				sequence_TypeIdFilter(context, (TypeIdFilter) semanticObject); 
 				return; 
@@ -450,11 +462,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	}
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     AttributeGroup returns AttributeGroup
 	 *
 	 * Constraint:
 	 *     (slot=TemplateInformationSlot? attributes+=Attribute attributes+=Attribute*)
+	 * </pre>
 	 */
 	protected void sequence_AttributeGroup(ISerializationContext context, AttributeGroup semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -462,11 +476,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
 	 *     (slot=TemplateInformationSlot? name=ConceptReference value=AttributeValue)
+	 * </pre>
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -474,12 +490,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     ConceptIdReplacementSlot returns ConceptIdReplacementSlot
 	 *     ConceptReplacementSlot returns ConceptIdReplacementSlot
 	 *
 	 * Constraint:
 	 *     (constraint=ExpressionConstraint? name=SLOTNAME_STRING?)
+	 * </pre>
 	 */
 	protected void sequence_ConceptIdReplacementSlot(ISerializationContext context, ConceptIdReplacementSlot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -487,12 +505,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     AttributeValue returns ConceptReference
 	 *     ConceptReference returns ConceptReference
 	 *
 	 * Constraint:
 	 *     (slot=ConceptReplacementSlot | (id=Identifier term=PIPE_DELIMITED_STRING?))
+	 * </pre>
 	 */
 	protected void sequence_ConceptReference(ISerializationContext context, ConceptReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -500,6 +520,7 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     AttributeValue returns DecimalReplacementSlot
 	 *     ConcreteValueReplacementSlot returns DecimalReplacementSlot
@@ -507,6 +528,7 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     ((values+=SlotDecimal values+=SlotDecimal*)? name=SLOTNAME_STRING?)
+	 * </pre>
 	 */
 	protected void sequence_DecimalReplacementSlot(ISerializationContext context, DecimalReplacementSlot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -514,12 +536,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     AttributeValue returns DecimalValue
 	 *     DecimalValue returns DecimalValue
 	 *
 	 * Constraint:
 	 *     value=Decimal
+	 * </pre>
 	 */
 	protected void sequence_DecimalValue(ISerializationContext context, DecimalValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -533,11 +557,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     EtlCardinality returns EtlCardinality
 	 *
 	 * Constraint:
 	 *     (min=NonNegativeInteger max=MaxValue)
+	 * </pre>
 	 */
 	protected void sequence_EtlCardinality(ISerializationContext context, EtlCardinality semanticObject) {
 		if (errorAcceptor != null) {
@@ -554,12 +580,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     ExpressionReplacementSlot returns ExpressionReplacementSlot
 	 *     ConceptReplacementSlot returns ExpressionReplacementSlot
 	 *
 	 * Constraint:
 	 *     (constraint=ExpressionConstraint? name=SLOTNAME_STRING?)
+	 * </pre>
 	 */
 	protected void sequence_ExpressionReplacementSlot(ISerializationContext context, ExpressionReplacementSlot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -567,11 +595,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     ExpressionTemplate returns ExpressionTemplate
 	 *
 	 * Constraint:
 	 *     ((primitive?=SUBTYPE_OF | slot=TokenReplacementSlot)? expression=SubExpression)?
+	 * </pre>
 	 */
 	protected void sequence_ExpressionTemplate(ISerializationContext context, ExpressionTemplate semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -579,11 +609,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     FocusConcept returns FocusConcept
 	 *
 	 * Constraint:
 	 *     (slot=TemplateInformationSlot? concept=ConceptReference)
+	 * </pre>
 	 */
 	protected void sequence_FocusConcept(ISerializationContext context, FocusConcept semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -591,6 +623,7 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     AttributeValue returns IntegerReplacementSlot
 	 *     ConcreteValueReplacementSlot returns IntegerReplacementSlot
@@ -598,6 +631,7 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     ((values+=SlotInteger values+=SlotInteger*)? name=SLOTNAME_STRING?)
+	 * </pre>
 	 */
 	protected void sequence_IntegerReplacementSlot(ISerializationContext context, IntegerReplacementSlot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -605,12 +639,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     AttributeValue returns IntegerValue
 	 *     IntegerValue returns IntegerValue
 	 *
 	 * Constraint:
 	 *     value=Integer
+	 * </pre>
 	 */
 	protected void sequence_IntegerValue(ISerializationContext context, IntegerValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -624,11 +660,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Refinement returns Refinement
 	 *
 	 * Constraint:
 	 *     (((attributes+=Attribute attributes+=Attribute*) | groups+=AttributeGroup) groups+=AttributeGroup*)
+	 * </pre>
 	 */
 	protected void sequence_Refinement(ISerializationContext context, Refinement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -636,11 +674,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     SlotDecimalMaximumValue returns SlotDecimalMaximumValue
 	 *
 	 * Constraint:
 	 *     (exclusive?=LT? value=NonNegativeDecimal)
+	 * </pre>
 	 */
 	protected void sequence_SlotDecimalMaximumValue(ISerializationContext context, SlotDecimalMaximumValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -648,11 +688,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     SlotDecimalMinimumValue returns SlotDecimalMinimumValue
 	 *
 	 * Constraint:
 	 *     (exclusive?=GT? value=NonNegativeDecimal)
+	 * </pre>
 	 */
 	protected void sequence_SlotDecimalMinimumValue(ISerializationContext context, SlotDecimalMinimumValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -660,12 +702,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     SlotDecimal returns SlotDecimalRange
 	 *     SlotDecimalRange returns SlotDecimalRange
 	 *
 	 * Constraint:
 	 *     ((minimum=SlotDecimalMinimumValue maximum=SlotDecimalMaximumValue?) | maximum=SlotDecimalMaximumValue)
+	 * </pre>
 	 */
 	protected void sequence_SlotDecimalRange(ISerializationContext context, SlotDecimalRange semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -673,12 +717,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     SlotDecimal returns SlotDecimalValue
 	 *     SlotDecimalValue returns SlotDecimalValue
 	 *
 	 * Constraint:
 	 *     value=NonNegativeDecimal
+	 * </pre>
 	 */
 	protected void sequence_SlotDecimalValue(ISerializationContext context, SlotDecimalValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -692,11 +738,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     SlotIntegerMaximumValue returns SlotIntegerMaximumValue
 	 *
 	 * Constraint:
 	 *     (exclusive?=LT? value=NonNegativeInteger)
+	 * </pre>
 	 */
 	protected void sequence_SlotIntegerMaximumValue(ISerializationContext context, SlotIntegerMaximumValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -704,11 +752,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     SlotIntegerMinimumValue returns SlotIntegerMinimumValue
 	 *
 	 * Constraint:
 	 *     (exclusive?=GT? value=NonNegativeInteger)
+	 * </pre>
 	 */
 	protected void sequence_SlotIntegerMinimumValue(ISerializationContext context, SlotIntegerMinimumValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -716,12 +766,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     SlotInteger returns SlotIntegerRange
 	 *     SlotIntegerRange returns SlotIntegerRange
 	 *
 	 * Constraint:
 	 *     ((minimum=SlotIntegerMinimumValue maximum=SlotIntegerMaximumValue?) | maximum=SlotIntegerMaximumValue)
+	 * </pre>
 	 */
 	protected void sequence_SlotIntegerRange(ISerializationContext context, SlotIntegerRange semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -729,12 +781,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     SlotInteger returns SlotIntegerValue
 	 *     SlotIntegerValue returns SlotIntegerValue
 	 *
 	 * Constraint:
 	 *     value=NonNegativeInteger
+	 * </pre>
 	 */
 	protected void sequence_SlotIntegerValue(ISerializationContext context, SlotIntegerValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -748,6 +802,7 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     AttributeValue returns StringReplacementSlot
 	 *     ConcreteValueReplacementSlot returns StringReplacementSlot
@@ -755,6 +810,7 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     ((values+=STRING values+=STRING*)? name=SLOTNAME_STRING?)
+	 * </pre>
 	 */
 	protected void sequence_StringReplacementSlot(ISerializationContext context, StringReplacementSlot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -762,12 +818,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     AttributeValue returns StringValue
 	 *     StringValue returns StringValue
 	 *
 	 * Constraint:
 	 *     value=STRING
+	 * </pre>
 	 */
 	protected void sequence_StringValue(ISerializationContext context, StringValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -781,12 +839,14 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     SubExpression returns SubExpression
 	 *     AttributeValue returns SubExpression
 	 *
 	 * Constraint:
 	 *     (focusConcepts+=FocusConcept focusConcepts+=FocusConcept* refinement=Refinement?)
+	 * </pre>
 	 */
 	protected void sequence_SubExpression(ISerializationContext context, SubExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -794,11 +854,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     TemplateInformationSlot returns TemplateInformationSlot
 	 *
 	 * Constraint:
 	 *     (cardinality=EtlCardinality? name=SLOTNAME_STRING?)
+	 * </pre>
 	 */
 	protected void sequence_TemplateInformationSlot(ISerializationContext context, TemplateInformationSlot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -806,11 +868,13 @@ public class EtlSemanticSequencer extends EclSemanticSequencer {
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     TokenReplacementSlot returns TokenReplacementSlot
 	 *
 	 * Constraint:
 	 *     ((tokens+=SlotToken tokens+=SlotToken*)? name=SLOTNAME_STRING?)
+	 * </pre>
 	 */
 	protected void sequence_TokenReplacementSlot(ISerializationContext context, TokenReplacementSlot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
