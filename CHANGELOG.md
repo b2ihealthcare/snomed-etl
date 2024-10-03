@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.4.0
+- [dependencies] update ECL to 2.2.0
+
 ## 1.3.9
 - [dependencies] update ECL to 2.1.5
 - [dependencies] update Eclipse platform to e4.30

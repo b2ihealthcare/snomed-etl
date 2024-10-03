@@ -12,7 +12,8 @@ See the official documentation [here](http://snomed.org/etl)
 
 # Supported versions
 
-* https://github.com/b2ihealthcare/snomed-etl/releases/tag/v1.3.8 - ETL 1.3.5 (based on ECL 2.1)
+* https://github.com/b2ihealthcare/snomed-etl/releases/tag/v1.4.0 - ETL 1.4.0 (based on ECL 2.2)
+* https://github.com/b2ihealthcare/snomed-etl/releases/tag/v1.3.9 - ETL 1.3.9 (based on ECL 2.1)
 * https://github.com/b2ihealthcare/snomed-etl/releases/tag/v1.2.0 - ETL 1.2.0 (based on ECL 1.5)
 * https://github.com/b2ihealthcare/snomed-etl/releases/tag/v1.0.0 - ETL 1.0.0 (based on ECL 1.4)
 
