@@ -12,28 +12,28 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		
+
 		<!-- Maven Dependency Versions -->
-		
+
 		<!-- p2 repositories -->
 		<snomed.ecl.version>2.2.0</snomed.ecl.version>
 		<snomed.ecl.site>mvn:com.b2international:com.b2international.snomed.ecl.update:${snomed.ecl.version}:zip</snomed.ecl.site>
-		
+
 		<!-- Build tool/compiler versions -->
 		<tycho.version>4.0.4</tycho.version>
 		<xtend.compiler.version>2.33.0</xtend.compiler.version>
-		
+
 		<!-- Versioning -->
 		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
 		<forceContextQualifier>${maven.build.timestamp}</forceContextQualifier>
-		
+
 		<!-- Deployment -->
 		<maven.repository.id>nexus_deployment</maven.repository.id>
-		<maven.releases.repository>https://nexus.b2i.sg/repository/maven-releases</maven.releases.repository>
-		<maven.snapshots.repository>https://nexus.b2i.sg/repository/maven-snapshots</maven.snapshots.repository>
-	
+		<maven.releases.repository>https://artifacts.b2ihealthcare.com/repository/maven-releases</maven.releases.repository>
+		<maven.snapshots.repository>https://artifacts.b2ihealthcare.com/repository/maven-snapshots</maven.snapshots.repository>
+
 	</properties>
-	
+
 	<modules>
 		<module>com.b2international.snomed.etl</module>
 		<module>com.b2international.snomed.etl.tests</module>
@@ -43,7 +43,7 @@
 		<module>com.b2international.snomed.etl.ui.feature</module>
 		<module>com.b2international.snomed.etl.update</module>
 	</modules>
-	
+
 	<repositories>
 		<repository>
 			<id>eclipse</id>
@@ -72,7 +72,7 @@
 		</repository>
 		<repository>
 			<id>b2i-releases</id>
-			<url>https://nexus.b2i.sg/repository/maven-releases</url>
+			<url>https://artifacts.b2ihealthcare.com/repository/maven-releases</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -82,7 +82,7 @@
 		</repository>
 		<repository>
 			<id>b2i-snapshots</id>
-			<url>https://nexus.b2i.sg/repository/maven-snapshots</url>
+			<url>https://artifacts.b2ihealthcare.com/repository/maven-snapshots</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -96,7 +96,7 @@
 			<layout>p2</layout>
 		</repository>
 	</repositories>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -183,7 +183,7 @@
 						<useUIThread>false</useUIThread>
 						<failIfNoTests>false</failIfNoTests>
 						<trimStackTrace>false</trimStackTrace>
-<!-- 						<argLine>${testArgLine}</argLine> -->
+						<!-- 						<argLine>${testArgLine}</argLine> -->
 					</configuration>
 				</plugin>
 				<plugin>
@@ -219,7 +219,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+
 	<distributionManagement>
 		<repository>
 			<id>${maven.repository.id}</id>
@@ -236,5 +236,5 @@
 		<connection>scm:git:ssh://github.com/b2ihealthcare/snomed-etl.git</connection>
 		<developerConnection>scm:git:ssh@github.com:b2ihealthcare/snomed-etl.git</developerConnection>
 	</scm>
-	
+
 </project>
